@@ -99,6 +99,7 @@ const indexPage = async (req, res) => {
         cartCount,
       });
     } else {
+      isLoggedin=false;
       res.render("index", {
         isLoggedin,
         productData,
