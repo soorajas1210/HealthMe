@@ -87,8 +87,16 @@ const indexPage = async (req, res) => {
       const wishlist = await Wishlist.findOne({
         userId: userSession.user_id,
       }).populate("product.productId");
-      cartCount = userCart.product.length;
-      wishCount = wishlist.product.length;
+      if (userCart != null) {
+        cartCount = userCart.product.length;
+      } else {
+        cartCount = userCart;
+      }
+      if (wishlist != null) {
+        wishCount = wishlist.product.length;
+      } else {
+        wishCount = wishlist;
+      }
       res.render("index", {
         isLoggedin,
         productData,
