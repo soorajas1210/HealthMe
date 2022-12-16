@@ -63,9 +63,6 @@ const sendMessage = function (mobile) {
 const indexPage = async (req, res) => {
   try {
     const userSession = req.session;
-    userSession.couponTotal = couponTotal;
-    userSession.discount = discount;
-    userSession.coupon = coupon;
     var search = "";
     if (req.query.search) {
       search = req.query.search;
@@ -77,31 +74,22 @@ const indexPage = async (req, res) => {
         { category: { $regex: ".*" + search + ".*", $options: "i" } },
       ],
     });
-
+    console.log(userSession.user);
     const categoryData = await Category.find({});
-    const ID = req.query.id;
-    console.log(ID);
-    // const productData = await Product.find({});
     const bannerData = await Banner.find({});
-    const userCart = await Cart.findOne({
-      userId: userSession.user_id,
-    }).populate("product.productId");
-    const wishlist = await Wishlist.findOne({
-      userId: userSession.user_id,
-    }).populate("product.productId");
-
     if (userSession.user_id) {
-      if (userCart != null) {
-        cartCount = userCart.product.length;
-      } else {
-        cartCount = userCart;
-      }
-      if (wishlist != null) {
+   
+      userSession.couponTotal = couponTotal;
+      userSession.discount = discount;
+      userSession.coupon = coupon;
+      const userCart = await Cart.findOne({
+        userId: userSession.user_id,
+      }).populate("product.productId");
+      const wishlist = await Wishlist.findOne({
+        userId: userSession.user_id,
+      }).populate("product.productId");
+       cartCount = userCart.product.length;
         wishCount = wishlist.product.length;
-      } else {
-        wishCount = wishlist;
-      }
-
       res.render("index", {
         isLoggedin,
         productData,
@@ -116,8 +104,8 @@ const indexPage = async (req, res) => {
         productData,
         cat: categoryData,
         banner: bannerData,
-        wishCount,
-        cartCount,
+        wishCount:null,
+        cartCount:null,
       });
     }
   } catch (error) {
@@ -384,7 +372,7 @@ const addtoWishlist = async (req, res) => {
     const productData = await Product.findOne({ _id: p_id });
 
     if (isExisting != null) {
-     const smProduct = await Wishlist.findOne({
+      const smProduct = await Wishlist.findOne({
         userId: userId,
         "product.productId": p_id,
       });
@@ -406,7 +394,7 @@ const addtoWishlist = async (req, res) => {
             },
           }
         );
-        res.json({status:true})
+        res.json({ status: true });
       }
     } else {
       console.log("5");
@@ -421,7 +409,7 @@ const addtoWishlist = async (req, res) => {
         ],
       });
       await wish.save();
-      res.json({status:true})
+      res.json({ status: true });
     }
   } catch (error) {
     console.log(error.message);
@@ -579,7 +567,7 @@ const addtoCart = async (req, res) => {
           },
           { $inc: { "product.$.quantity": 1 } }
         );
-        res.json({status:true})
+        res.json({ status: true });
       } else {
         console.log("else");
         await Cart.updateMany(
@@ -594,7 +582,7 @@ const addtoCart = async (req, res) => {
             },
           }
         );
-        res.json({status:true})
+        res.json({ status: true });
       }
     } else {
       if (productData.quantity >= 1) {
@@ -610,8 +598,7 @@ const addtoCart = async (req, res) => {
           ],
         });
         await cart.save();
-        res.json({status:true})
-
+        res.json({ status: true });
       } else {
         res.redirect("/");
       }
@@ -660,16 +647,14 @@ const loadCart = async (req, res) => {
       productData.totalprice = totalPrice;
 
       await productData.save();
-      console.log("hi",userSession.couponTotal);
-    
-        //update coupon
-        if(userSession.couponTotal == 0)
-        {
-          userSession.couponTotal = totalPrice;
-          userSession.discount = discount;
-        }
-        
-    
+      console.log("hi", userSession.couponTotal);
+
+      //update coupon
+      if (userSession.couponTotal == 0) {
+        userSession.couponTotal = totalPrice;
+        userSession.discount = discount;
+      }
+
       console.log(userSession.couponTotal);
 
       res.render("cart", {
@@ -700,39 +685,37 @@ const loadCart = async (req, res) => {
 };
 
 const updateCart = async (req, res) => {
-
   try {
     const userSession = req.session;
-  const userId = userSession.user_id;
-  const p_id = req.query.id;
-  console.log(req.body.qty);
-  const productData = await Cart.findOne({ userId: userId }).populate(
-    "product.productId"
-  );
-  const index = await productData.product.findIndex(
-    (cartItems) => cartItems._id == p_id
-  );
+    const userId = userSession.user_id;
+    const p_id = req.query.id;
+    console.log(req.body.qty);
+    const productData = await Cart.findOne({ userId: userId }).populate(
+      "product.productId"
+    );
+    const index = await productData.product.findIndex(
+      (cartItems) => cartItems._id == p_id
+    );
 
-  console.log("index",index);
-  productData.product[index].quantity = req.body.qty;
+    console.log("index", index);
+    productData.product[index].quantity = req.body.qty;
 
-  productData.totalprice = 0;
+    productData.totalprice = 0;
 
-  const totalPrice = productData.product.reduce((acc, curr) => {
-    return acc + curr.productId.price * curr.quantity;
-  }, 0);
+    const totalPrice = productData.product.reduce((acc, curr) => {
+      return acc + curr.productId.price * curr.quantity;
+    }, 0);
 
-  productData.totalprice = totalPrice;
-  userSession.couponTotal=0;
+    productData.totalprice = totalPrice;
+    userSession.couponTotal = 0;
 
-  console.log("total",productData.totalprice);
-  await productData.save();
+    console.log("total", productData.totalprice);
+    await productData.save();
 
-  res.redirect("/cart");
+    res.redirect("/cart");
   } catch (error) {
     console.log(error.message);
   }
-  
 };
 
 const checkOut = async (req, res) => {
@@ -777,7 +760,7 @@ const addCoupon = async (req, res) => {
         console.log(offerData.usedBy);
         console.log(userSession.user_id);
         console.log(offerData.usedBy == userSession.user_id);
-        if (! offerData.usedBy.includes(userSession.user_id)) {
+        if (!offerData.usedBy.includes(userSession.user_id)) {
           userSession.offer.name = offerData.name;
           userSession.offer.type = offerData.type;
           userSession.offer.discount = offerData.discount;
@@ -1095,8 +1078,9 @@ const updateAccount = async (req, res) => {
 
 const userLogout = async (req, res) => {
   try {
+  const  userSession =  req.session
     isLoggedin = false;
-    req.session.destroy();
+    userSession.user_id=false;
     res.redirect("/");
   } catch (error) {
     console.log(error.message);
