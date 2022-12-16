@@ -1,10 +1,7 @@
 <%- include('../partials/userlogedinhead 2.ejs') %>
 
 <main class="main">
-  <div
-    class="page-header text-center"
-    style="background-image: url('assets/images/page-header-bg.jpg')"
-  >
+  <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
     <div class="container">
       <h1 class="page-title">My Account<span>Shop</span></h1>
     </div>
@@ -28,58 +25,19 @@
       <div class="container">
         <div class="row">
           <aside class="col-md-4 col-lg-3">
-            <ul
-              class="nav nav-dashboard flex-column mb-3 mb-md-0"
-              role="tablist"
-            >
+            <ul class="nav nav-dashboard flex-column mb-3 mb-md-0" role="tablist">
               <li class="nav-item">
-                <a
-                  class="nav-link active"
-                  id="tab-dashboard-link"
-                  data-toggle="tab"
-                  href="#tab-dashboard"
-                  role="tab"
-                  aria-controls="tab-dashboard"
-                  aria-selected="true"
-                  >Dashboard</a
-                >
+                <a class="nav-link active" id="tab-dashboard-link" data-toggle="tab" href="#tab-dashboard" role="tab" aria-controls="tab-dashboard" aria-selected="true">Dashboard</a>
               </li>
               <li class="nav-item">
-                <a
-                  class="nav-link"
-                  id="tab-orders-link"
-                  data-toggle="tab"
-                  href="#tab-orders"
-                  role="tab"
-                  aria-controls="tab-orders"
-                  aria-selected="false"
-                  >Orders</a
-                >
+                <a class="nav-link" id="tab-orders-link" data-toggle="tab" href="#tab-orders" role="tab" aria-controls="tab-orders" aria-selected="false">Orders</a>
               </li>
 
               <li class="nav-item">
-                <a
-                  class="nav-link"
-                  id="tab-address-link"
-                  data-toggle="tab"
-                  href="#tab-address"
-                  role="tab"
-                  aria-controls="tab-address"
-                  aria-selected="false"
-                  >Adresses</a
-                >
+                <a class="nav-link" id="tab-address-link" data-toggle="tab" href="#tab-address" role="tab" aria-controls="tab-address" aria-selected="false">Adresses</a>
               </li>
               <li class="nav-item">
-                <a
-                  class="nav-link"
-                  id="tab-account-link"
-                  data-toggle="tab"
-                  href="#tab-account"
-                  role="tab"
-                  aria-controls="tab-account"
-                  aria-selected="false"
-                  >Account Details</a
-                >
+                <a class="nav-link" id="tab-account-link" data-toggle="tab" href="#tab-account" role="tab" aria-controls="tab-account" aria-selected="false">Account Details</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link logout" href="/logout">Sign Out</a>
@@ -90,17 +48,10 @@
 
           <div class="col-md-8 col-lg-9">
             <div class="tab-content">
-              <div
-                class="tab-pane fade show active"
-                id="tab-dashboard"
-                role="tabpanel"
-                aria-labelledby="tab-dashboard-link"
-              >
+              <div class="tab-pane fade show active" id="tab-dashboard" role="tabpanel" aria-labelledby="tab-dashboard-link">
                 <p>
                   Hello
-                  <span class="font-weight-normal text-dark"
-                    ><%= user.firstname %> <%= user.lastname %></span
-                  >
+                  <span class="font-weight-normal text-dark"><%= user.firstname %> <%= user.lastname %></span>
                 </p>
                 <% if(typeof message !== 'undefined'){%>
                 <div class="col-sm-6">
@@ -110,12 +61,7 @@
               </div>
               <!-- .End .tab-pane -->
 
-              <div
-                class="tab-pane fade"
-                id="tab-orders"
-                role="tabpanel"
-                aria-labelledby="tab-orders-link"
-              >
+              <div class="tab-pane fade" id="tab-orders" role="tabpanel" aria-labelledby="tab-orders-link">
                 <table class="table v-middle text-center">
                   <thead>
                     <tr class="bg-light">
@@ -138,20 +84,12 @@
                       <td><%= order[i-1].status %></td>
 
                       <td>
-                        <a
-                          href="/order-details?id=<%=order[i-1]._id%>"
-                          class="btn btn-outline-primary-2"
-                        >
-                          Details</a
-                        >
+                        <a href="/order-details?id=<%=order[i-1]._id%>" class="btn btn-outline-primary-2">
+                          Details</a>
                       </td>
 
                       <td>
-                        <a
-                          href="/order-cancel?id=<%= order[i-1]._id %>"
-                          class="btn btn-outline-danger cancel"
-                          >Cancel</a
-                        >
+                        <a href="/order-cancel?id=<%= order[i-1]._id %>" class="btn btn-outline-danger cancel">Cancel</a>
                       </td>
                     </tr>
                     <% } } else{ %>
@@ -164,25 +102,13 @@
               </div>
               <!-- .End .tab-pane -->
 
-              <div
-                class="tab-pane fade"
-                id="tab-downloads"
-                role="tabpanel"
-                aria-labelledby="tab-downloads-link"
-              >
+              <div class="tab-pane fade" id="tab-downloads" role="tabpanel" aria-labelledby="tab-downloads-link">
                 <p>No downloads available yet.</p>
-                <a href="category.html" class="btn btn-outline-primary-2"
-                  ><span>GO SHOP</span><i class="icon-long-arrow-right"></i
-                ></a>
+                <a href="category.html" class="btn btn-outline-primary-2"><span>GO SHOP</span><i class="icon-long-arrow-right"></i></a>
               </div>
               <!-- .End .tab-pane -->
 
-              <div
-                class="tab-pane fade"
-                id="tab-address"
-                role="tabpanel"
-                aria-labelledby="tab-address-link"
-              >
+              <div class="tab-pane fade" id="tab-address" role="tabpanel" aria-labelledby="tab-address-link">
                 <p>
                   The following addresses will be used on the checkout page by
                   default.
@@ -203,9 +129,7 @@
                           <%= user.country %><br />
                           <%= user.mobileno %><br />
                           <%= user.email %><br />
-                          <a href="/edit-user-address"
-                            >Edit <i class="icon-edit"></i
-                          ></a>
+                          <a href="/edit-user-address">Edit <i class="icon-edit"></i></a>
                         </p>
                       </div>
                       <!-- End .card-body -->
@@ -235,62 +159,34 @@
               </div>
               <!-- .End .tab-pane -->
 
-              <div
-                class="tab-pane fade"
-                id="tab-account"
-                role="tabpanel"
-                aria-labelledby="tab-account-link"
-              >
+              <div class="tab-pane fade" id="tab-account" role="tabpanel" aria-labelledby="tab-account-link">
                 <form action="/update-account" method="post">
                   <div class="row">
                     <div class="col-sm-6">
                       <label>First Name *</label>
-                      <input
-                        type="text"
-                        name="firstname"
-                        class="form-control"
-                        required
-                      />
+                      <input type="text" name="firstname" class="form-control" required />
                     </div>
                     <!-- End .col-sm-6 -->
 
                     <div class="col-sm-6">
                       <label>Last Name *</label>
-                      <input
-                        type="text"
-                        name="lastname"
-                        class="form-control"
-                        required
-                      />
+                      <input type="text" name="lastname" class="form-control" required />
                     </div>
                     <!-- End .col-sm-6 -->
                   </div>
                   <!-- End .row -->
 
                   <label>Email address *</label>
-                  <input
-                    type="email"
-                    name="email"
-                    class="form-control"
-                    required
-                  />
+                  <input type="email" name="email" class="form-control" required />
 
                   <label>Current password *</label>
                   <input type="password" name="password" class="form-control" />
 
                   <label>New password *</label>
-                  <input
-                    type="password"
-                    name="npassword"
-                    class="form-control"
-                  />
+                  <input type="password" name="npassword" class="form-control" />
 
                   <label>Confirm new password *</label>
-                  <input
-                    type="password"
-                    name="cpassword"
-                    class="form-control mb-2"
-                  />
+                  <input type="password" name="cpassword" class="form-control mb-2" />
 
                   <button type="submit" class="btn btn-outline-primary-2">
                     <span>SAVE CHANGES</span>

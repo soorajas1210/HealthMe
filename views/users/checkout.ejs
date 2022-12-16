@@ -1,10 +1,7 @@
 <%- include('../partials/userlogedinhead 2.ejs') %>
 
 <main class="main">
-  <div
-    class="page-header text-center"
-    style="background-image: url('assets/images/page-header-bg.jpg')"
-  >
+  <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
     <div class="container">
       <h1 class="page-title">Checkout<span>Shop</span></h1>
     </div>
@@ -28,15 +25,8 @@
       <div class="container">
         <div class="checkout-discount">
           <form action="/payment" method="post">
-            <input
-              type="text"
-              class="form-control"
-              required
-              id="checkout-discount-input"
-            />
-            <label for="checkout-discount-input" class="text-truncate"
-              >Have a coupon? <span>Click here to enter your code</span></label
-            >
+            <input type="text" class="form-control" required id="checkout-discount-input" />
+            <label for="checkout-discount-input" class="text-truncate">Have a coupon? <span>Click here to enter your code</span></label>
           </form>
         </div>
         <!-- End .checkout-discount -->
@@ -48,71 +38,34 @@
               <div class="row">
                 <div class="col-sm-6">
                   <label>First Name *</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    name="firstname"
-                    value="<%=user.firstname %>"
-                    required
-                  />
+                  <input type="text" class="form-control" name="firstname" value="<%=user.firstname %>" required />
                 </div>
                 <!-- End .col-sm-6 -->
 
                 <div class="col-sm-6">
                   <label>Last Name *</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    name="lastname"
-                    value="<%=user.lastname %>"
-                    required
-                  />
+                  <input type="text" class="form-control" name="lastname" value="<%=user.lastname %>" required />
                 </div>
                 <!-- End .col-sm-6 -->
               </div>
               <!-- End .row -->
 
               <label>Country *</label>
-              <input
-                type="text"
-                class="form-control"
-                name="country"
-                value="<%=user.country %>"
-                required
-              />
+              <input type="text" class="form-control" name="country" value="<%=user.country %>" required />
 
               <label>Street address *</label>
-              <input
-                type="text"
-                class="form-control"
-                name="streetAddress"
-                value="<%=user.streetAddress %>"
-                placeholder="House number and Street name"
-                required
-              />
+              <input type="text" class="form-control" name="streetAddress" value="<%=user.streetAddress %>" placeholder="House number and Street name" required />
 
               <div class="row">
                 <div class="col-sm-6">
                   <label>Town / City *</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    name="city"
-                    value="<%=user.city %>"
-                    required
-                  />
+                  <input type="text" class="form-control" name="city" value="<%=user.city %>" required />
                 </div>
                 <!-- End .col-sm-6 -->
 
                 <div class="col-sm-6">
                   <label>State / County *</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    name="state"
-                    value="<%=user.state %>"
-                    required
-                  />
+                  <input type="text" class="form-control" name="state" value="<%=user.state %>" required />
                 </div>
                 <!-- End .col-sm-6 -->
               </div>
@@ -121,25 +74,13 @@
               <div class="row">
                 <div class="col-sm-6">
                   <label>PIN code*</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    name="pin"
-                    value="<%=user.pin %>"
-                    required
-                  />
+                  <input type="text" class="form-control" name="pin" value="<%=user.pin %>" required />
                 </div>
                 <!-- End .col-sm-6 -->
 
                 <div class="col-sm-6">
                   <label>Phone *</label>
-                  <input
-                    type="tel"
-                    class="form-control"
-                    name="mobileno"
-                    value="<%=user.mobileno %>"
-                    required
-                  />
+                  <input type="tel" class="form-control" name="mobileno" value="<%=user.mobileno %>" required />
                 </div>
                 <!-- End .col-sm-6 -->
               </div>
@@ -147,45 +88,22 @@
 
               <label>Email address *</label>
 
-              <input
-                type="email"
-                class="form-control"
-                name="email"
-                value="<%=user.email %>"
-                required
-              />
+              <input type="email" class="form-control" name="email" value="<%=user.email %>" required />
 
               <div class="custom-control custom-checkbox">
-                <input
-                  type="checkbox"
-                  class="custom-control-input"
-                  id="checkout-create-acc"
-                />
-                <label class="custom-control-label" for="checkout-create-acc"
-                  >Create an account?</label
-                >
+                <input type="checkbox" class="custom-control-input" id="checkout-create-acc" />
+                <label class="custom-control-label" for="checkout-create-acc">Create an account?</label>
               </div>
               <!-- End .custom-checkbox -->
 
               <div class="custom-control custom-checkbox">
-                <input
-                  type="checkbox"
-                  class="custom-control-input"
-                  id="checkout-diff-address"
-                />
-                <label class="custom-control-label" for="checkout-diff-address"
-                  >Ship to a different address?</label
-                >
+                <input type="checkbox" class="custom-control-input" id="checkout-diff-address" />
+                <label class="custom-control-label" for="checkout-diff-address">Ship to a different address?</label>
               </div>
               <!-- End .custom-checkbox -->
 
               <label>Order notes (optional)</label>
-              <textarea
-                class="form-control"
-                cols="30"
-                rows="4"
-                placeholder="Notes about your order, e.g. special notes for delivery"
-              ></textarea>
+              <textarea class="form-control" cols="30" rows="4" placeholder="Notes about your order, e.g. special notes for delivery"></textarea>
             </div>
             <!-- End .col-lg-9 -->
             <aside class="col-lg-3">
@@ -234,13 +152,7 @@
                   <div class="card">
                     <div class="card-header" id="heading-2">
                       <h2 class="card-title">
-                        <input
-                          type="radio"
-                          data-toggle="collapse"
-                          name="payment"
-                          id=""
-                          value="cod"
-                        />
+                        <input type="radio" data-toggle="collapse" name="payment" id="" value="cod" />
                         Cash on delivery
                       </h2>
                     </div>
@@ -250,13 +162,7 @@
                   <div class="card">
                     <div class="card-header" id="heading-2">
                       <h2 class="card-title">
-                        <input
-                          type="radio"
-                          data-toggle="collapse"
-                          name="payment"
-                          id=""
-                          value="paypal"
-                        />
+                        <input type="radio" data-toggle="collapse" name="payment" id="" value="paypal" />
                         PayPal
                       </h2>
                     </div>
@@ -265,10 +171,7 @@
                 </div>
                 <!-- End .accordion -->
 
-                <button
-                  type="submit"
-                  class="btn btn-outline-primary-2 btn-order btn-block"
-                >
+                <button type="submit" class="btn btn-outline-primary-2 btn-order btn-block">
                   <span class="btn-text">Place Order</span>
                   <span class="btn-hover-text">Proceed to Checkout</span>
                 </button>

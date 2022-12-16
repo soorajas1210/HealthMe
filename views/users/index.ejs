@@ -48,8 +48,8 @@
                             }
                         }
                     }'>
-                    <%  if (banner.length >0){ %>
-                      <% for(i=1; i<=banner.length;i++){ %>  
+      <%  if (banner.length >0){ %>
+      <% for(i=1; i<=banner.length;i++){ %>
       <div class="intro-slide" style="background-image: url(./productsImage/<%=banner[i-1].image%>);">
         <div class="container intro-content text-center">
           <h3 class="intro-subtitle text-white"><%= banner[i-1].title %> </h3><!-- End .h3 intro-subtitle -->
@@ -60,15 +60,15 @@
           </a>
         </div><!-- End .intro-content -->
       </div><!-- End .intro-slide -->
-      <% } %> 
+      <% } %>
 
       <% }else { %>
 
-            <p>no data</p>
+      <p>no data</p>
 
-         <%} %> 
+      <%} %>
 
-      
+
     </div><!-- End .intro-slider owl-carousel owl-theme -->
 
     <span class="slider-loader"></span><!-- End .slider-loader -->
@@ -167,13 +167,13 @@
                 <img src="./productsImage/<%= productData[i-1].image %>" alt="Product image" class="product-image">
                 <img src="./productsImage/<%= productData[i-1].image %>" alt="Product image" class="product-image-hover">
               </a>
- 
-              <div class="product-action-vertical">            
+
+              <div class="product-action-vertical">
                 <button onclick="addToWish('<%= productData[i-1]._id %>')" class="btn-product-icon btn-wishlist "></button>
               </div><!-- End .product-action-vertical -->
 
-              <div class="product-action">          
-                <button onclick="addToCart('<%= productData[i-1]._id %>')" class="btn-product btn-cart border-0 btn-outline-primary" > <span>add to cart</span></button>
+              <div class="product-action">
+                <button onclick="addToCart('<%= productData[i-1]._id %>')" class="btn-product btn-cart border-0 btn-outline-primary"> <span>add to cart</span></button>
               </div>
             </figure><!-- End .product-media -->
 
@@ -249,12 +249,13 @@
                 <img src="./productsImage/<%= productData[i-1].image %>" alt="Product image" class="product-image-hover">
               </a>
 
-              <div class="product-action-vertical">            
+              <div class="product-action-vertical">
                 <button onclick="addToWish('<%= productData[i-1]._id %>')" class="btn-product-icon btn-wishlist "></button>
-              </div>><!-- End .product-action-vertical -->
+              </div>>
+              <!-- End .product-action-vertical -->
 
-              <div class="product-action">          
-                <button onclick="addToCart('<%= productData[i-1]._id %>')" class="btn-product btn-cart border-0 btn-outline-primary" > <span>add to cart</span></button>
+              <div class="product-action">
+                <button onclick="addToCart('<%= productData[i-1]._id %>')" class="btn-product btn-cart border-0 btn-outline-primary"> <span>add to cart</span></button>
               </div><!-- End .product-action -->
             </figure><!-- End .product-media -->
 
@@ -321,13 +322,13 @@
                 <img src="./productsImage/<%= productData[i-1].image %>" alt="Product image" class="product-image-hover">
               </a>
 
-              <div class="product-action-vertical">            
+              <div class="product-action-vertical">
                 <button onclick="addToWish('<%= productData[i-1]._id %>')" class="btn-product-icon btn-wishlist "></button>
               </div><!-- End .product-action-vertical -->
 
               <div class="product-action">
-            
-                <button onclick="addToCart('<%= productData[i-1]._id %>')" class="btn-product btn-cart border-0 btn-outline-primary" > <span>add to cart</span></button>
+
+                <button onclick="addToCart('<%= productData[i-1]._id %>')" class="btn-product btn-cart border-0 btn-outline-primary"> <span>add to cart</span></button>
 
               </div><!-- End .product-action -->
             </figure><!-- End .product-media -->
@@ -392,13 +393,13 @@
                 <img src="./productsImage/<%= productData[i-1].image %>" alt="Product image" class="product-image-hover">
               </a>
 
-              <div class="product-action-vertical">            
+              <div class="product-action-vertical">
                 <button onclick="addToWish('<%= productData[i-1]._id %>')" class="btn-product-icon btn-wishlist "></button>
               </div><!-- End .product-action-vertical -->
 
               <div class="product-action">
-            
-                <button onclick="addToCart('<%= productData[i-1]._id %>')" class="btn-product btn-cart border-0 btn-outline-primary" > <span>add to cart</span></button>
+
+                <button onclick="addToCart('<%= productData[i-1]._id %>')" class="btn-product btn-cart border-0 btn-outline-primary"> <span>add to cart</span></button>
 
               </div><!-- End .product-action -->
             </figure><!-- End .product-media -->
@@ -451,7 +452,7 @@
               <div class="product-body">
                 <h3 class="product-title" style="color:white"><a href="product.html">Light Dumbles</a></h3><!-- End .product-title -->
                 <div class="product-price">
-                  
+
                 </div><!-- End .product-price -->
               </div><!-- End .product-body -->
               <a href="/shoplist" class="action">shop now</a>
@@ -544,11 +545,11 @@
 
         <% if( productData.length > 0){ %>
 
-        
+
 
         <%   for(let i = 1;i <= productData.length; i++){ %>
 
-          <% if( productData[i-1].rating >= 4){ %>
+        <% if( productData[i-1].rating >= 4){ %>
         <div class="col-6 col-md-4 col-lg-3">
           <div class="product product-7 text-center">
             <figure class="product-media">
@@ -562,16 +563,16 @@
                 <img src="" alt="" class="product-image-hover">
               </a>
 
-              <div class="product-action-vertical">            
-                  <button onclick="addToWish('<%= productData[i-1]._id %>')" class="btn-product-icon btn-wishlist "></button>
+              <div class="product-action-vertical">
+                <button onclick="addToWish('<%= productData[i-1]._id %>')" class="btn-product-icon btn-wishlist "></button>
               </div><!-- End .product-action-vertical -->
 
               <div class="product-action">
-            
-                <button onclick="addToCart('<%= productData[i-1]._id %>')" class="btn-product btn-cart border-0 btn-outline-primary" > <span>add to cart</span></button>
+
+                <button onclick="addToCart('<%= productData[i-1]._id %>')" class="btn-product btn-cart border-0 btn-outline-primary"> <span>add to cart</span></button>
 
               </div>
-            
+
             </figure><!-- End .product-media -->
 
             <div class="product-body">
@@ -595,7 +596,7 @@
           </div><!-- End .product -->
         </div><!-- End .col-sm-6 col-md-4 col-lg-3 -->
 
-         
+
         <% }} }else{ %>
         <tr>
           <td colspan="5">Products Not Found</td>
@@ -609,7 +610,7 @@
     </div><!-- End .more-container -->
   </div><!-- End .container -->
 
-  
+
 
   <div class="mb-2"></div><!-- End .mb-5 -->
 

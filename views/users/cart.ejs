@@ -58,8 +58,8 @@
                   <td class="quantity-col">
                     <div class="cart-product-quantity">
                       <form action="/update-cart?id=<%= cart[i-1]._id%>" method="post">
-                        
-                       <input type="number" class="form-control " name="qty" value="<%= cart[i-1].quantity %>" min="1" max="10" step="1" data-decimals="0" required>
+
+                        <input type="number" class="form-control " name="qty" value="<%= cart[i-1].quantity %>" min="1" max="10" step="1" data-decimals="0" required>
                         <button class="btn-block btn-outline-primary-2" type="submit"><i class="icon-refresh"></i></button>
                       </form>
                     </div><!-- End .cart-product-quantity -->
@@ -84,7 +84,7 @@
               <div class="cart-discount">
                 <form action="/add-coupon" method="post">
                   <div class="input-group">
-                    <input type="text" class="form-control" name="offer" required placeholder="coupon code : <%= coupon %> "  id="offer">
+                    <input type="text" class="form-control" name="offer" required placeholder="coupon code : <%= coupon %> " id="offer">
                     <div class="input-group-append">
                       <button class="btn btn-outline-primary-2" type="submit"><i class="icon-long-arrow-right"></i></button>
                     </div><!-- .End .input-group-append -->

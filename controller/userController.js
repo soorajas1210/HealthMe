@@ -78,7 +78,6 @@ const indexPage = async (req, res) => {
     const categoryData = await Category.find({});
     const bannerData = await Banner.find({});
     if (userSession.user_id) {
-   
       userSession.couponTotal = couponTotal;
       userSession.discount = discount;
       userSession.coupon = coupon;
@@ -88,8 +87,8 @@ const indexPage = async (req, res) => {
       const wishlist = await Wishlist.findOne({
         userId: userSession.user_id,
       }).populate("product.productId");
-       cartCount = userCart.product.length;
-        wishCount = wishlist.product.length;
+      cartCount = userCart.product.length;
+      wishCount = wishlist.product.length;
       res.render("index", {
         isLoggedin,
         productData,
@@ -99,14 +98,14 @@ const indexPage = async (req, res) => {
         cartCount,
       });
     } else {
-      isLoggedin=false;
+      isLoggedin = false;
       res.render("index", {
         isLoggedin,
         productData,
         cat: categoryData,
         banner: bannerData,
-        wishCount:null,
-        cartCount:null,
+        wishCount: null,
+        cartCount: null,
       });
     }
   } catch (error) {
@@ -1079,9 +1078,9 @@ const updateAccount = async (req, res) => {
 
 const userLogout = async (req, res) => {
   try {
-  const  userSession =  req.session
+    const userSession = req.session;
     isLoggedin = false;
-    userSession.user_id=false;
+    userSession.user_id = false;
     res.redirect("/");
   } catch (error) {
     console.log(error.message);

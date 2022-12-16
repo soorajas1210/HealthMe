@@ -20,14 +20,6 @@
     <div class="row align-items-center">
       <div class="col-5">
         <h4 class="page-title">Dashboard</h4>
-        <!-- <div class="d-flex align-items-center">
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Library</li>
-                                </ol>
-                            </nav>
-                        </div> -->
       </div>
 
     </div>
@@ -50,70 +42,66 @@
     <!-- Table -->
     <!-- ============================================================== -->
     <div class="row">
-      <div class="col-md-6" >
-          <div style="width: 500px;">
-              <input type="hidden" id="category" value="<%= category %>">
-              <input type="hidden" id="count" value="<%= count %>">
-              <h3 class="text-danger text-center">Popular Categories:</h3>
-              <canvas id="myChart"></canvas>
-          </div>
-          <script type="text/javascript" >
-              const count = document.getElementById('count')
-              // console.log('type:',typeof(count.value),' value:',count.value);
-              const countArray = count.value.split(',')
-              // console.log('type:',typeof(countArray),'values,',countArray);
+      <div class="col-md-6">
+        <div style="width: 500px;">
+          <input type="hidden" id="category" value="<%= category %>">
+          <input type="hidden" id="count" value="<%= count %>">
+          <h3 class="text-danger text-center">Popular Categories:</h3>
+          <canvas id="myChart"></canvas>
+        </div>
+        <script type="text/javascript">
+          const count = document.getElementById('count')
+          // console.log('type:',typeof(count.value),' value:',count.value);
+          const countArray = count.value.split(',')
+          // console.log('type:',typeof(countArray),'values,',countArray);
 
-              const category = document.getElementById('category')
-              // console.log(' value:',category.value);
-              const categoryArray = category.value.split(',')
-              // console.log('values,',categoryArray);
+          const category = document.getElementById('category')
+          // console.log(' value:',category.value);
+          const categoryArray = category.value.split(',')
+          // console.log('values,',categoryArray);
 
-              const ctx = document.getElementById('myChart');
-              
-              new Chart(ctx, {
-                type: 'pie',
-                data: {
-                  labels: categoryArray,
-                  datasets: [{
-                    label: 'Orders:',
-                    data: countArray,
-                    borderWidth: 1
-                  }]
-                },
-                options: {
-                  scales: {
-                    y: {
-                      beginAtZero: true
-                    }
-                  }
+          const ctx = document.getElementById('myChart');
+
+          new Chart(ctx, {
+            type: 'pie',
+            data: {
+              labels: categoryArray,
+              datasets: [{
+                label: 'Orders:',
+                data: countArray,
+                borderWidth: 1
+              }]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true
                 }
-              });
-            </script>                          
+              }
+            }
+          });
+        </script>
       </div>
       <div class="col-md-6">
-
-          
-          
-   </div>
+      </div>
+    </div>
 
   </div>
+  <!-- ============================================================== -->
+  <!-- Table -->
+  <!-- ============================================================== -->
+  <!-- ============================================================== -->
+  <!-- Recent comment and chats -->
+  <!-- ============================================================== -->
 
-  </div>
-    <!-- ============================================================== -->
-    <!-- Table -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- Recent comment and chats -->
-    <!-- ============================================================== -->
-
-    <!-- ============================================================== -->
-    <!-- Recent comment and chats -->
-    <!-- ============================================================== -->
-  </div>
   <!-- ============================================================== -->
-  <!-- End Container fluid  -->
+  <!-- Recent comment and chats -->
   <!-- ============================================================== -->
-  <!-- ============================================================== -->
-  <!-- footer -->
-  <!-- ============================================================== -->
-  <%- include("../partials/admin-footer.ejs") -%>
+</div>
+<!-- ============================================================== -->
+<!-- End Container fluid  -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- footer -->
+<!-- ============================================================== -->
+<%- include("../partials/admin-footer.ejs") -%>

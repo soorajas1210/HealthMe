@@ -2,10 +2,7 @@
 }else { %> <%- include('../partials/userheader.ejs')-%> <% } %>
 
 <main class="main">
-  <div
-    class="page-header text-center"
-    style="background-image: url('assets/images/page-header-bg.jpg')"
-  >
+  <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
     <div class="container">
       <h1 class="page-title">Wishlist<span>Shop</span></h1>
     </div>
@@ -44,10 +41,7 @@
               <div class="product">
                 <figure class="product-media">
                   <a href="#">
-                    <img
-                      src="./productsImage/<%= wish[i-1].productId.image %>"
-                      alt="Product image"
-                    />
+                    <img src="./productsImage/<%= wish[i-1].productId.image %>" alt="Product image" />
                   </a>
                 </figure>
 
@@ -68,10 +62,7 @@
             </td>
             <% } %> <% if(wish[i-1].productId.quantity >0){ %>
             <td class="action-col">
-              <form
-                action="/wish-to-cart?id=<%= wish[i-1].productId._id %>"
-                method="post"
-              >
+              <form action="/wish-to-cart?id=<%= wish[i-1].productId._id %>" method="post">
                 <button class="btn btn-block btn-outline-primary-2">
                   <i class="icon-cart-plus"></i>Add to Cart
                 </button>
@@ -90,9 +81,7 @@
             <% } %>
             <td class="remove-col">
               <button class="btn-remove">
-                <a href="/delete-wishlist?id=<%= wish[i-1]._id %>"
-                  ><i class="icon-close"></i
-                ></a>
+                <a href="/delete-wishlist?id=<%= wish[i-1]._id %>"><i class="icon-close"></i></a>
               </button>
             </td>
           </tr>
@@ -107,21 +96,11 @@
       <div class="wishlist-share">
         <div class="social-icons social-icons-sm mb-2">
           <label class="social-label">Share on:</label>
-          <a href="#" class="social-icon" title="Facebook" target="_blank"
-            ><i class="icon-facebook-f"></i
-          ></a>
-          <a href="#" class="social-icon" title="Twitter" target="_blank"
-            ><i class="icon-twitter"></i
-          ></a>
-          <a href="#" class="social-icon" title="Instagram" target="_blank"
-            ><i class="icon-instagram"></i
-          ></a>
-          <a href="#" class="social-icon" title="Youtube" target="_blank"
-            ><i class="icon-youtube"></i
-          ></a>
-          <a href="#" class="social-icon" title="Pinterest" target="_blank"
-            ><i class="icon-pinterest"></i
-          ></a>
+          <a href="#" class="social-icon" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
+          <a href="#" class="social-icon" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
+          <a href="#" class="social-icon" title="Instagram" target="_blank"><i class="icon-instagram"></i></a>
+          <a href="#" class="social-icon" title="Youtube" target="_blank"><i class="icon-youtube"></i></a>
+          <a href="#" class="social-icon" title="Pinterest" target="_blank"><i class="icon-pinterest"></i></a>
         </div>
         <!-- End .soial-icons -->
       </div>

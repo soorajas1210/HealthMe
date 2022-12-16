@@ -1,10 +1,7 @@
 <% if(isLoggedin) { %> <%- include('../partials/userlogedinhead 2.ejs')-%> <%
 }else { %> <%- include('../partials/userheader.ejs')-%> <% } %>
 <main class="main">
-  <div
-    class="page-header text-center"
-    style="background-image: url('assets/images/page-header-bg.jpg')"
-  >
+  <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
     <div class="container">
       <h1 class="page-title"><span>Shop</span></h1>
     </div>
@@ -96,30 +93,21 @@
                   <figure class="product-media">
                     <a href="/product?id=<%= productData[i-1]._id %>">
                       <% if(productData[i-1].image) { %>
-                      <img
-                        src="./productsImage/<%= productData[i-1].image %>"
-                        alt="Product image"
-                        class="product-image"
-                      />
+                      <img src="./productsImage/<%= productData[i-1].image %>" alt="Product image" class="product-image" />
                       <% }else{ %> Image Not Found <% } %>
                     </a>
 
                     <div class="product-action-vertical">
-                      <div class="product-action-vertical">            
-                      <button onclick="addToWish('<%= productData[i-1]._id %>')" class="btn-product-icon btn-wishlist "></button>
+                      <div class="product-action-vertical">
+                        <button onclick="addToWish('<%= productData[i-1]._id %>')" class="btn-product-icon btn-wishlist "></button>
                       </div>
-                      <a
-                        href="/product?id=<%= productData[i-1]._id %>"
-                        class="btn-product-icon btn-quickview"
-                        title="Quick view"
-                        ><span>Quick view</span></a
-                      >
-                     
+                      <a href="/product?id=<%= productData[i-1]._id %>" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></a>
+
                     </div>
                     <!-- End .product-action-vertical -->
 
-                    <div class="product-action">          
-                    <button onclick="addToCart('<%= productData[i-1]._id %>')" class="btn-product btn-cart border-0 btn-outline-primary" > <span>add to cart</span></button>
+                    <div class="product-action">
+                      <button onclick="addToCart('<%= productData[i-1]._id %>')" class="btn-product btn-cart border-0 btn-outline-primary"> <span>add to cart</span></button>
                     </div>
                   </figure>
                   <!-- End .product-media -->
@@ -130,15 +118,12 @@
                     </div>
                     <!-- End .product-cat -->
                     <h3 class="product-title">
-                      <a href="product.html"
-                        ><%= productData[i-1].productname %></a
-                      >
+                      <a href="product.html"><%= productData[i-1].productname %></a>
                     </h3>
                     <!-- End .product-title -->
                     <div class="product-price">
                       <span class="out-price">
-                        <%= productData[i-1].price %></span
-                      >
+                        <%= productData[i-1].price %></span>
                     </div>
                     <!-- End .product-price -->
                     <div class="ratings-container">
@@ -170,16 +155,8 @@
           <nav aria-label="Page navigation">
             <ul class="pagination justify-content-center">
               <li class="page-item">
-                <a
-                  class="page-link page-link-prev"
-                  href="?page=<%= previous %>"
-                  aria-label="Previous"
-                  tabindex="-1"
-                  aria-disabled="true"
-                >
-                  <span aria-hidden="true"
-                    ><i class="icon-long-arrow-left"></i></span
-                  >Prev
+                <a class="page-link page-link-prev" href="?page=<%= previous %>" aria-label="Previous" tabindex="-1" aria-disabled="true">
+                  <span aria-hidden="true"><i class="icon-long-arrow-left"></i></span>Prev
                 </a>
               </li>
               <% for(let i=1; i<= totalPages; i++) { %> <% if(currentPage == i)
@@ -193,15 +170,9 @@
               </li>
               <% } %> <% } %>
               <li class="page-item">
-                <a
-                  class="page-link page-link-next"
-                  href="?page=<%= next %>"
-                  aria-label="Next"
-                >
+                <a class="page-link page-link-next" href="?page=<%= next %>" aria-label="Next">
                   Next
-                  <span aria-hidden="true"
-                    ><i class="icon-long-arrow-right"></i
-                  ></span>
+                  <span aria-hidden="true"><i class="icon-long-arrow-right"></i></span>
                 </a>
               </li>
             </ul>
@@ -218,13 +189,7 @@
 
             <div class="widget widget-collapsible">
               <h3 class="widget-title">
-                <a
-                  data-toggle="collapse"
-                  href="#widget-1"
-                  role="button"
-                  aria-expanded="true"
-                  aria-controls="widget-1"
-                >
+                <a data-toggle="collapse" href="#widget-1" role="button" aria-expanded="true" aria-controls="widget-1">
                   Category
                 </a>
               </h3>
@@ -238,9 +203,7 @@
 
                     <div class="filter-item">
                       <div class="">
-                        <a href="/shoplist?id=<%= cat[i-1]._id%>"
-                          ><%= cat[i-1].category %></a
-                        >
+                        <a href="/shoplist?id=<%= cat[i-1]._id%>"><%= cat[i-1].category %></a>
                       </div>
                       <!-- End .custom-checkbox -->
                       <span class="item-count"></span>

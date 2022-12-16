@@ -79,13 +79,12 @@
     </div>
 
     <div class="table-responsive upgrade-btn">
-      <table class="table v-middle table-hover " >
+      <table class="table v-middle table-hover ">
         <thead>
           <tr class="bg-light">
             <th class="border-top-0">SI NO</th>
             <th class="border-top-0">CATEGORIES</th>
             <th class="border-top-0">ACTION</th>
-
           </tr>
         </thead>
         <tbody>
@@ -95,13 +94,10 @@
             <td>
               <%= i %>
             </td>
-
-
             <td>
               <%= categ[i-1].category%>
             </td>
             <td>
-
               <a href="/admin/admin-delete-category?id=<%= categ[i-1]._id %>" class="btn btn-sm btn-outline-danger mb-1"> Delete </a>
             </td>
 
@@ -111,8 +107,6 @@
             <td colspan="5">No categories found</td>
           </tr>
           <% } %>
-
-
         </tbody>
       </table>
     </div>
