@@ -19,7 +19,7 @@
     <div class="col-lg-8 col-xlg-9 col-md-7">
       <div class="card">
         <div class="card-body">
-          <form action="/admin/add-banner" method="post" class="form-horizontal form-material mx-2" enctype="multipart/form-data">
+          <form action="/admin/add-banner" method="post" class="form-horizontal form-material mx-2" enctype="multipart/form-data" >
             <div class="form-group">
               <label class="col-md-12"></label>
               <div class="col-md-12">
@@ -53,85 +53,96 @@
                 %>
       </div>
       <div class="row">
-        <div class="col-12">
-          <div class="card">
-            <div class="card-body">
-              <h4 class="card-title">Banner List</h4>
-              <!-- <h6 class="card-subtitle">Add <code>.table-hover</code> to enable a hover state on table
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Banner List</h4>
+          <!-- <h6 class="card-subtitle">Add <code>.table-hover</code> to enable a hover state on table
                                     rows within a <code>&lt;tbody&gt;</code>.</h6> -->
-            </div>
-            <div class="table-responsive">
-              <table class="table table-hover ">
-                <thead>
-                  <tr>
-                    <th>Sl.No</th>
-                    <th>
-                      Title
-                    </th>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-hover ">
+            <thead>
+              <tr>
+                <th>Sl.No</th>
+                <th>
+                  Title
+                </th>
 
-                    <th>
-                      Image
-                    </th>
-
-                  </tr>
-                </thead>
-                <tbody>
-                  <% if( banner.length >= 0){ %>
-                  <%   for(let i = 1;i <= banner.length; i++){ %>
-                  <tr>
-                    <td>
-                      <%= i %>
-                    </td>
-
-                    <td>
-                      <div class="d-flex align-items-center">
-
-                        <div class="">
-                          <h4 class="m-b-0 font-16">
-                            <%= banner[i-1].title %>
-
-                          </h4>
-                        </div>
-                      </div>
-                    </td>
+                <th>
+                  Image
+                </th>
 
 
-                    <td>
-                      <% if(banner[i-1].image) { %>
-                      <img src="./productsImage/<%= banner[i-1].image %>" alt="image" width="100vw" height="100vh">
-                      <% }else{ %>
-                      Image Not Found
-                      <% } %>
-                    </td>
+              </tr>
+            </thead>
 
-                    <td>
-                      <br>
-                      <a class="btn btn-sm btn-outline-danger" href="/admin/delete-banner?id=<%= banner[i-1]._id %>">Delete</a>
 
-                    </td>
+            <tbody>
+              <% if( banner.length >= 0){ %>
+              <%   for(let i = 1;i <= banner.length; i++){ %>
+              <tr>
+                <td>
+                  <%= i %>
+                </td>
 
-                  </tr>
-                  <% } } else{ %>
-                  <tr>
-                    <td colspan="5">Products Not Found</td>
-                  </tr>
+                <td>
+                  <div class="d-flex align-items-center">
+
+                    <div class="">
+                      <h4 class="m-b-0 font-16">
+                        <%= banner[i-1].title %>
+
+                      </h4>
+                    </div>
+                  </div>
+                </td>
+
+
+                <td>
+                  <% if(banner[i-1].image) { %>
+                  <img src="./productsImage/<%= banner[i-1].image %>" alt="image" width="100vw" height="100vh">
+                  <% }else{ %>
+                  Image Not Found
                   <% } %>
+                </td>
 
-                </tbody>
 
-              </table>
-            </div>
-          </div>
+
+                <td>
+
+
+                  <br>
+
+                  <a class="btn btn-sm btn-outline-danger" href="/admin/delete-banner?id=<%= banner[i-1]._id %>">Delete</a>
+
+                </td>
+
+
+              </tr>
+              <% } } else{ %>
+              <tr>
+                <td colspan="5">Products Not Found</td>
+              </tr>
+              <% } %>
+
+
+
+            </tbody>
+
+          </table>
         </div>
       </div>
+    </div>
+  </div>
     </div>
   </div>
 
 </div>
 
 
-
-<!-- ============================================================== -->
+  
+  <!-- ============================================================== -->
 
 
 
