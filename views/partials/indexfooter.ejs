@@ -1,0 +1,199 @@
+<footer class="footer">
+    <div class="footer-middle">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-lg-3">
+                    <div class="widget widget-about">
+                        <h4 class="widget-title">about HealthMe</h4><!-- End .widget-title -->
+                        <p>HealthMe enables fitness enthusiasts to achieve their fitness goals in their comfort zone by building an efficient home gym and making home workouts effective and engaging. </p>
+
+                        
+                    </div><!-- End .widget about-widget -->
+                </div><!-- End .col-sm-6 col-lg-3 -->
+
+                <div class="col-sm-6 col-lg-3">
+                    <div class="widget">
+                        <h4 class="widget-title">Useful Links</h4><!-- End .widget-title -->
+
+                        <ul class="widget-list">
+                            <li><a href="#">About HealthMe</a></li>
+                            
+                            <li><a href="/login">Log in</a></li>
+                        </ul><!-- End .widget-list -->
+                    </div><!-- End .widget -->
+                </div><!-- End .col-sm-6 col-lg-3 -->
+
+                <div class="col-sm-6 col-lg-3">
+                    <div class="widget">
+                        <h4 class="widget-title">Customer Service</h4><!-- End .widget-title -->
+
+                        <ul class="widget-list">
+                            <li><a href="#">Payment Methods</a></li>
+                            <li><a href="#">Money-back guarantee!</a></li>
+                            <li><a href="#">Returns</a></li>
+                            <li><a href="#">Shipping</a></li>
+                            <li><a href="#">Terms and conditions</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                        </ul><!-- End .widget-list -->
+                    </div><!-- End .widget -->
+                </div><!-- End .col-sm-6 col-lg-3 -->
+
+                <div class="col-sm-6 col-lg-3">
+                    <div class="widget">
+                        <h4 class="widget-title">My Account</h4><!-- End .widget-title -->
+
+                        <ul class="widget-list">
+                            <li><a href="/register">Sign In</a></li>
+                            <li><a href="/cart">View Cart</a></li>
+                            <li><a href="/wishlist">My Wishlist</a></li>
+                            <li><a href="/dashbosrd">Track My Order</a></li>
+                            
+                        </ul><!-- End .widget-list -->
+                    </div><!-- End .widget -->
+                </div><!-- End .col-sm-6 col-lg-3 -->
+            </div><!-- End .row -->
+        </div><!-- End .container -->
+    </div><!-- End .footer-middle -->
+
+    <div class="footer-bottom">
+        <div class="container">
+           
+            <img src="assets/images/demos/demo-6/logo-footer.png" alt="Molla Logo" width="82" height="25">
+            <p class="footer-copyright">Copyright © 2019 Molla Store. All Rights Reserved.</p><!-- End .footer-copyright -->
+        </div><!-- End .container -->
+    </div><!-- End .footer-bottom -->
+</footer><!-- End .footer -->
+</div><!-- End .page-wrapper -->
+<button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
+
+
+<!-- Mobile Menu -->
+<div class="mobile-menu-overlay"></div><!-- End .mobil-menu-overlay -->
+
+<div class="mobile-menu-container">
+    <div class="mobile-menu-wrapper">
+        <span class="mobile-menu-close"><i class="icon-close"></i></span>
+
+        <form action="#" method="get" class="mobile-search">
+            <label for="mobile-search" class="sr-only">Search</label>
+            <input type="search" class="form-control" name="search" id="mobile-search" placeholder="Search in..." required>
+            <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
+        </form>
+        
+        <nav class="mobile-nav">
+            <ul class="mobile-menu">
+                <li class="active">
+                   <a href="/" class="sf-with-ul">Home</a>
+                                          
+               </li>
+               <% if( cat.length > 0){ %>
+                <%   for(let i = 1;i <= cat.length; i++){ %>
+                <li>
+                  <a href="/shoplist?id=<%= cat[i-1]._id %>" class="sf-with-ul" ><%= cat[i-1].category %></a>
+                </li>
+      
+                <% } } %>
+               <li>
+                   
+                   <a href="/shoplist" class="">All products</a>
+
+               </li>
+            </ul>
+        </nav><!-- End .mobile-nav -->
+
+        
+    </div><!-- End .mobile-menu-wrapper -->
+</div><!-- End .mobile-menu-container -->
+<!-- Plugins JS File -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/jquery.hoverIntent.min.js"></script>
+<script src="assets/js/jquery.waypoints.min.js"></script>
+<script src="assets/js/superfish.min.js"></script>
+<script src="assets/js/owl.carousel.min.js"></script>
+<script src="assets/js/bootstrap-input-spinner.js"></script>
+<script src="assets/js/jquery.plugin.min.js"></script>
+<script src="assets/js/jquery.magnific-popup.min.js"></script>
+<script src="assets/js/jquery.countdown.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- Main JS File -->
+
+<script src="assets/js/main.js"></script>
+<script src="assets/js/demos/demo-6.js"></script>
+<script>
+
+</script>
+<script>
+
+function addToCart(productId) {
+  $.ajax({
+    url: '/cart?id='+productId,
+    method: 'POST',
+    success: function (response) {
+      if (response.status) {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Product is added to the cart',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        let count = $('#cart-count').html();
+        count = parseInt(count) + 1;
+        $('#cart-count').html(count);
+      }else{
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: 'Please login',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        let count = $('#cart-count').html();
+        count = parseInt(count) + 1;
+        $('#cart-count').html(count);
+      }
+    },
+  });
+}
+function addToWish(productId) {
+  $.ajax({
+    url: '/wishlist?id='+productId,
+    method: 'POST',
+    success: function (response) {
+      if (response.status) {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Product is added to the wishlist',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        let count = $('#wish-count').html();
+        count = parseInt(count) + 1;
+        $('#wish-count').html(count);
+      }else{
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: 'Please login',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        let count = $('#wish-count').html();
+        count = parseInt(count) + 1;
+        $('#wish-count').html(count);
+      }
+    },
+  });
+}
+</script>
+
+
+</body>
+
+
+<!-- molla/index-6.html  22 Nov 2019 09:56:39 GMT -->
+</html>

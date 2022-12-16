@@ -1,0 +1,204 @@
+<%- include("../partials/adminHeader") -%>
+<!-- ============================================================== -->
+<!-- End Topbar header -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Left Sidebar - style you can find in sidebar.scss  -->
+<!-- ============================================================== -->
+<%- include("../partials/adminSidebar") -%>
+<!-- ============================================================== -->
+<!-- End Left Sidebar - style you can find in sidebar.scss  -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Page wrapper  -->
+<!-- ============================================================== -->
+<div class="page-wrapper">
+  <!-- ============================================================== -->
+  <!-- Bread crumb and right sidebar toggle -->
+  <!-- ============================================================== -->
+
+  <!-- ============================================================== -->
+  <!-- End Bread crumb and right sidebar toggle -->
+  <!-- ============================================================== -->
+  <!-- ============================================================== -->
+  <!-- Container fluid  -->
+  <!-- ============================================================== -->
+  <div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+
+          <div class="page-breadcrumb">
+            <div class="row align-items-center">
+              <div class="col-5">
+                <h4 class="page-title">Products</h4>
+
+              </div>
+              <div class="col-7">
+                <div class="text-end upgrade-btn">
+                  <a href="/admin/addproduct" class="btn btn-danger text-white">Add Products</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-7">
+            <form action="/admin/products">
+              <div class="form-outline mb-4">
+                <input type="search" class="form-control" placeholder="Search" name="search">
+              </div>
+            </form>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-hover text-center table-hover">
+              <thead>
+                <tr>
+                  <th>Sl.No</th>
+                  <th>
+                    Productname
+                  </th>
+                  <th>
+                    Price
+                  </th>
+                  <th>
+                    Rating
+                  </th>
+                  <th>
+                    Image
+                  </th>
+                  <th>
+                    Category
+                  </th>
+                  <th>
+                    Quantity
+                  </th>
+                  <th>Actions</th>
+
+                </tr>
+              </thead>
+
+
+              <tbody>
+                <% if( products.length > 0){ %>
+                <%   for(let i = 1;i <= products.length; i++){ %>
+                <tr>
+                  <td>
+                    <%= i %>
+                  </td>
+
+                  <td>
+                    <div class="d-flex align-items-center">
+
+                      <div class=" text-center">
+                        <h4 class="m-b-0 font-16">
+                          <%= products[i-1].productname %>
+
+                        </h4>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <%= products[i-1].price %>
+                  </td>
+                  <td>
+                    <%= products[i-1].rating %>
+                  </td>
+
+                  <td>
+                    <% if(products[i-1].image) { %>
+                    <img src="./productsImage/<%= products[i-1].image %>" alt="<%= products[i-1].image %>" width="100vw" height="100vh">
+                    <% }else{ %>
+                    Image Not Found
+                    <% } %>
+                  </td>
+
+                  <td>
+                    <%= products[i-1].category
+                                                            %>
+                  </td>
+                  <td>
+                    <%= products[i-1].quantity
+                                                            %>
+                  </td>
+
+                  <td>
+                    <a class="btn btn-sm btn-outline-primary" href="/admin/editproduct?id=<%= products[i-1]._id %>">
+
+                      Edite.</a>
+                    <br>
+                    <br>
+                    <a class="btn btn-sm btn-outline-danger delete" href="/admin/deleteproduct?id=<%= products[i-1]._id %>">Delete</a>
+                    <br>
+
+                  </td>
+                  <td>
+                    <% if(products[i-1].isAvailable){ %>
+                    <a class="btn btn-sm btn-outline-secondary" href="/admin/soft-delete?id=<%= products[i-1]._id %>">softDelete</a>
+                    <% }else{ %>
+                    <a class="btn btn-sm btn-outline-success" href="/admin/soft-delete?id=<%= products[i-1]._id %>">updateDelete</a>
+                    <% } %>
+                  </td>
+
+                </tr>
+                <% } } else{ %>
+                <tr>
+                  <td colspan="5">Products Not Found</td>
+                </tr>
+                <% } %>
+
+
+
+              </tbody>
+
+            </table>
+            <br>
+            <br>
+
+            <nav aria-label="Page navigation">
+              <ul class="pagination justify-content-center">
+                <li class="page-item ">
+                  <a class="page-link page-link-prev" href="?page=<%= previous %>" aria-label="Previous" tabindex="-1" aria-disabled="true">
+                    <span aria-hidden="true"><i class="icon-long-arrow-left"></i></span>Prev
+                  </a>
+                </li>
+                <% for(let i=1; i<= totalPages; i++) { %>
+                <%  if(currentPage == i) { %>
+                <li class="page-item active" area-current="page"><a class="page-link" href="?page=<%= i %>"><%= i %> </a></li>
+                <% } else { %>
+                <li class="page-item " area-current="page"><a class="page-link" href="?page=<%= i %>"><%= i %> </a></li>
+                <% } %>
+
+                <%  } %>
+                <li class="page-item">
+                  <a class="page-link page-link-next" href="?page=<%= next %>" aria-label="Next">
+                    Next <span aria-hidden="true"><i class="icon-long-arrow-right"></i></span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+            <br>
+            <br>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End PAge Content -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Right sidebar -->
+    <!-- ============================================================== -->
+    <!-- .right-sidebar -->
+    <!-- ============================================================== -->
+    <!-- End Right sidebar -->
+    <!-- ============================================================== -->
+  </div>
+  <!-- ============================================================== -->
+  <!-- End Container fluid  -->
+  <!-- ============================================================== -->
+  <!-- ============================================================== -->
+  <!-- footer -->
+  <!-- ============================================================== -->
+  <%- include("../partials/admin-footer.ejs") -%>

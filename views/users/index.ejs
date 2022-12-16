@@ -1,0 +1,622 @@
+<% if(isLoggedin) { %>
+<%- include('../partials/userlogedinIndex.ejs') %>
+<% }else { %>
+<%- include('../partials/indexheader.ejs') %>
+<% } %>
+
+<div class="header-bottom sticky-header">
+  <div class="container">
+    <div class="header-left">
+      <nav class="main-nav">
+        <ul class="menu sf-arrows">
+          <li class="megamenu-container active">
+            <a href="#">Home</a>
+          </li>
+
+          <% if( cat.length > 0){ %>
+          <%   for(let i = 1;i <= cat.length; i++){ %>
+          <li>
+            <a href="/shoplist?id=<%= cat[i-1]._id %>"><%= cat[i-1].category %></a>
+          </li>
+
+          <% } } %>
+          <li>
+            <a href="/shoplist">All Products</a>
+          </li>
+
+        </ul><!-- End .menu -->
+      </nav><!-- End .main-nav -->
+
+      <button class="mobile-menu-toggler">
+        <span class="sr-only">Toggle mobile menu</span>
+        <i class="icon-bars"></i>
+      </button>
+    </div><!-- End .header-left -->
+
+
+  </div><!-- End .container -->
+</div><!-- End .header-bottom -->
+</header><!-- End .header -->
+<main class="main">
+  <div class="intro-slider-container">
+    <div class="intro-slider owl-carousel owl-theme owl-nav-inside owl-light" data-toggle="owl" data-owl-options='{
+                        "dots": false,
+                        "nav": false, 
+                        "responsive": {
+                            "992": {
+                                "nav": true
+                            }
+                        }
+                    }'>
+                    <%  if (banner.length >0){ %>
+                      <% for(i=1; i<=banner.length;i++){ %>  
+      <div class="intro-slide" style="background-image: url(./productsImage/<%=banner[i-1].image%>);">
+        <div class="container intro-content text-center">
+          <h3 class="intro-subtitle text-white"><%= banner[i-1].title %> </h3><!-- End .h3 intro-subtitle -->
+          <h1 class="intro-title text-white">Get Fit</h1><!-- End .intro-title -->
+
+          <a href="/shoplist" class="btn btn-outline-white-4">
+            <span>Discover More</span>
+          </a>
+        </div><!-- End .intro-content -->
+      </div><!-- End .intro-slide -->
+      <% } %> 
+
+      <% }else { %>
+
+            <p>no data</p>
+
+         <%} %> 
+
+      
+    </div><!-- End .intro-slider owl-carousel owl-theme -->
+
+    <span class="slider-loader"></span><!-- End .slider-loader -->
+  </div><!-- End .intro-slider-container -->
+
+  <div class="pt-2 pb-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="banner banner-overlay">
+            <a href="#">
+              <img src="assets/images/demos/demo-6/banners/banner-1.jpg" alt="Banner">
+            </a>
+
+            <div class="banner-content banner-content-center">
+              <h4 class="banner-subtitle text-white"><a href="#">New in</a></h4><!-- End .banner-subtitle -->
+              <h3 class="banner-title text-white"><a href="#"><strong>Cardio</strong></h3><!-- End .banner-title -->
+              <a href="#" class="btn btn-outline-white banner-link underline">Shop Now</a>
+            </div><!-- End .banner-content -->
+          </div><!-- End .banner -->
+        </div><!-- End .col-sm-6 -->
+
+        <div class="col-sm-6">
+          <div class="banner banner-overlay">
+            <a href="#">
+              <img src="assets/images/demos/demo-6/banners/banner-2.jpg" alt="Banner">
+            </a>
+
+            <div class="banner-content banner-content-center">
+              <h4 class="banner-subtitle text-white"><a href="#">New in</a></h4><!-- End .banner-subtitle -->
+              <h3 class="banner-title text-white"><a href="#"><strong>Strength</strong></a></h3><!-- End .banner-title -->
+              <a href="#" class="btn btn-outline-white banner-link underline">Shop Now</a>
+            </div><!-- End .banner-content -->
+          </div><!-- End .banner -->
+        </div><!-- End .col-sm-6 -->
+      </div><!-- End .row -->
+      <hr class="mt-0 mb-0">
+    </div><!-- End .container -->
+  </div><!-- End .bg-gray -->
+
+  <div class="mb-5"></div><!-- End .mb-5 -->
+  <div class="container">
+    <div class="heading heading-center mb-3">
+      <h2 class="title">Trending</h2><!-- End .title -->
+
+      <ul class="nav nav-pills justify-content-center" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="trending-all-link" data-toggle="tab" href="#trending-all-tab" role="tab" aria-controls="trending-all-tab" aria-selected="true">All</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="trending-women-link" data-toggle="tab" href="#trending-women-tab" role="tab" aria-controls="trending-women-tab" aria-selected="false">Strength</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="trending-men-link" data-toggle="tab" href="#trending-men-tab" role="tab" aria-controls="trending-men-tab" aria-selected="false">Cardio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="trending-men-link" data-toggle="tab" href="#trending-other-tab" role="tab" aria-controls="trending-men-tab" aria-selected="false">Other</a>
+        </li>
+      </ul>
+    </div><!-- End .heading -->
+
+    <div class="tab-content tab-content-carousel">
+      <div class="tab-pane p-0 fade show active" id="trending-all-tab" role="tabpanel" aria-labelledby="trending-all-link">
+        <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl" data-owl-options='{
+                                "nav": false, 
+                                "dots": true,
+                                "margin": 20,
+                                "loop": false,
+                                "responsive": {
+                                    "0": {
+                                        "items":2
+                                    },
+                                    "480": {
+                                        "items":2
+                                    },
+                                    "768": {
+                                        "items":3
+                                    },
+                                    "992": {
+                                        "items":4
+                                    },
+                                    "1200": {
+                                        "items":4,
+                                        "nav": true,
+                                        "dots": false
+                                    }
+                                }
+                            }'>
+          <% if( productData.length > 0){ %>
+
+          <%   for(let i = 1;i <= productData.length; i++){ %>
+
+          <div class="product product-7 text-center">
+            <figure class="product-media">
+              <a href="/product?id=<%= productData[i-1]._id %>">
+                <img src="./productsImage/<%= productData[i-1].image %>" alt="Product image" class="product-image">
+                <img src="./productsImage/<%= productData[i-1].image %>" alt="Product image" class="product-image-hover">
+              </a>
+ 
+              <div class="product-action-vertical">            
+                <button onclick="addToWish('<%= productData[i-1]._id %>')" class="btn-product-icon btn-wishlist "></button>
+              </div><!-- End .product-action-vertical -->
+
+              <div class="product-action">          
+                <button onclick="addToCart('<%= productData[i-1]._id %>')" class="btn-product btn-cart border-0 btn-outline-primary" > <span>add to cart</span></button>
+              </div>
+            </figure><!-- End .product-media -->
+
+            <div class="product-body">
+              <div class="product-cat">
+                <a href="#"><%= productData[i-1].category %></a>
+              </div><!-- End .product-cat -->
+              <h3 class="product-title"><a href="product.html"><%= productData[i-1].productname%></a></h3><!-- End .product-title -->
+              <div class="product-price">
+                <%= productData[i-1].price %>
+              </div><!-- End .product-price -->
+
+              <div class="product-nav product-nav-thumbs">
+                <a href="#" class="active">
+                  <img src="./productsImage/<%= productData[i-1].image %>" alt="product desc">
+                </a>
+                <a href="#">
+                  <img src="./productsImage/<%= productData[i-1].image %>" alt="product desc">
+                </a>
+                <a href="#">
+                  <img src="./productsImage/<%= productData[i-1].image %>" alt="product desc">
+                </a>
+              </div><!-- End .product-nav -->
+            </div><!-- End .product-body -->
+          </div><!-- End .product -->
+          <% }} else{ %>
+          <tr>
+            <td colspan="5">Products Not Found</td>
+          </tr>
+          <% } %>
+
+        </div><!-- End .owl-carousel -->
+      </div><!-- .End .tab-pane -->
+      <div class="tab-pane p-0 fade" id="trending-women-tab" role="tabpanel" aria-labelledby="trending-women-link">
+        <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl" data-owl-options='{
+                                "nav": false, 
+                                "dots": true,
+                                "margin": 20,
+                                "loop": false,
+                                "responsive": {
+                                    "0": {
+                                        "items":0
+                                    },
+                                    "480": {
+                                        "items":2
+                                    },
+                                    "768": {
+                                        "items":3
+                                    },
+                                    "992": {
+                                        "items":4
+                                    },
+                                    "1200": {
+                                        "items":4,
+                                        "nav": true,
+                                        "dots": false
+                                    }
+                                }
+                            }'>
+
+
+          <% if( productData.length >0){ %>
+
+          <%   for(let i = 1;i <= productData.length; i++){ %>
+
+          <% if(productData[i-1].category == "Strength") { %>
+
+          <div class="product product-7 text-center">
+            <figure class="product-media">
+              <span class="product-label label-sale"></span>
+              <a href="/product?id=<%= productData[i-1]._id %>">
+                <img src="./productsImage/<%= productData[i-1].image %>" alt="Product image" class="product-image">
+                <img src="./productsImage/<%= productData[i-1].image %>" alt="Product image" class="product-image-hover">
+              </a>
+
+              <div class="product-action-vertical">            
+                <button onclick="addToWish('<%= productData[i-1]._id %>')" class="btn-product-icon btn-wishlist "></button>
+              </div>><!-- End .product-action-vertical -->
+
+              <div class="product-action">          
+                <button onclick="addToCart('<%= productData[i-1]._id %>')" class="btn-product btn-cart border-0 btn-outline-primary" > <span>add to cart</span></button>
+              </div><!-- End .product-action -->
+            </figure><!-- End .product-media -->
+
+            <div class="product-body">
+              <div class="product-cat">
+                <a href="#"><%= productData[i-1].category %></a>
+              </div><!-- End .product-cat -->
+              <h3 class="product-title"><a href="product.html"><%= productData[i-1].productname %></a></h3><!-- End .product-title -->
+              <div class="product-price">
+                <span class="new-price">Now <%= productData[i-1].category %></span>
+
+              </div><!-- End .product-price -->
+            </div><!-- End .product-body -->
+          </div><!-- End .product -->
+
+
+          <% } else{ %>
+          <% }  %>
+
+          <% }} else{ %>
+          <tr>
+            <td colspan="5">Products Not Found</td>
+          </tr>
+          <% } %>
+        </div><!-- End .owl-carousel -->
+      </div><!-- .End .tab-pane -->
+
+      <div class="tab-pane p-0 fade" id="trending-men-tab" role="tabpanel" aria-labelledby="trending-men-link">
+        <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl" data-owl-options='{
+                                "nav": false, 
+                                "dots": true,
+                                "margin": 20,
+                                "loop": false,
+                                "responsive": {
+                                    "0": {
+                                        "items":0
+                                    },
+                                    "480": {
+                                        "items":2
+                                    },
+                                    "768": {
+                                        "items":3
+                                    },
+                                    "992": {
+                                        "items":4
+                                    },
+                                    "1200": {
+                                        "items":4,
+                                        "nav": true,
+                                        "dots": false
+                                    }
+                                }
+                            }'>
+          <% if( productData.length >0){ %>
+
+          <%   for(let i = 1;i <= productData.length; i++){ %>
+
+          <% if(productData[i-1].category == "Cardio") { %>
+          <div class="product product-7 text-center">
+            <figure class="product-media">
+              <span class="product-label label-sale">sale</span>
+              <a href="/product?id=<%= productData[i-1]._id %>">
+                <img src="./productsImage/<%= productData[i-1].image %>" alt="Product image" class="product-image">
+                <img src="./productsImage/<%= productData[i-1].image %>" alt="Product image" class="product-image-hover">
+              </a>
+
+              <div class="product-action-vertical">            
+                <button onclick="addToWish('<%= productData[i-1]._id %>')" class="btn-product-icon btn-wishlist "></button>
+              </div><!-- End .product-action-vertical -->
+
+              <div class="product-action">
+            
+                <button onclick="addToCart('<%= productData[i-1]._id %>')" class="btn-product btn-cart border-0 btn-outline-primary" > <span>add to cart</span></button>
+
+              </div><!-- End .product-action -->
+            </figure><!-- End .product-media -->
+
+            <div class="product-body">
+              <div class="product-cat">
+                <a href="#"><%= productData[i-1].category %></a>
+              </div><!-- End .product-cat -->
+              <h3 class="product-title"><a href="product.html"><%= productData[i-1].productname %></a></h3><!-- End .product-title -->
+              <div class="product-price">
+                <span class="new-price"><%= productData[i-1].price %></span>
+
+              </div><!-- End .product-price -->
+            </div><!-- End .product-body -->
+          </div><!-- End .product -->
+          <% } else{ %>
+          <% }  %>
+
+          <% }} else{ %>
+          <tr>
+            <td colspan="5">Products Not Found</td>
+          </tr>
+          <% } %>
+        </div><!-- End .owl-carousel -->
+      </div><!-- .End .tab-pane -->
+      <div class="tab-pane p-0 fade" id="trending-other-tab" role="tabpanel" aria-labelledby="trending-men-link">
+        <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl" data-owl-options='{
+                                "nav": false, 
+                                "dots": true,
+                                "margin": 20,
+                                "loop": false,
+                                "responsive": {
+                                    "0": {
+                                        "items":0
+                                    },
+                                    "480": {
+                                        "items":2
+                                    },
+                                    "768": {
+                                        "items":3
+                                    },
+                                    "992": {
+                                        "items":4
+                                    },
+                                    "1200": {
+                                        "items":4,
+                                        "nav": true,
+                                        "dots": false
+                                    }
+                                }
+                            }'>
+          <% if( productData.length >0){ %>
+
+          <%   for(let i = 1;i <= productData.length; i++){ %>
+
+          <% if(productData[i-1].category == "Other") { %>
+          <div class="product product-7 text-center">
+            <figure class="product-media">
+              <span class="product-label label-sale">sale</span>
+              <a href="/product?id=<%= productData[i-1]._id %>">
+                <img src="./productsImage/<%= productData[i-1].image %>" alt="Product image" class="product-image">
+                <img src="./productsImage/<%= productData[i-1].image %>" alt="Product image" class="product-image-hover">
+              </a>
+
+              <div class="product-action-vertical">            
+                <button onclick="addToWish('<%= productData[i-1]._id %>')" class="btn-product-icon btn-wishlist "></button>
+              </div><!-- End .product-action-vertical -->
+
+              <div class="product-action">
+            
+                <button onclick="addToCart('<%= productData[i-1]._id %>')" class="btn-product btn-cart border-0 btn-outline-primary" > <span>add to cart</span></button>
+
+              </div><!-- End .product-action -->
+            </figure><!-- End .product-media -->
+
+            <div class="product-body">
+              <div class="product-cat">
+                <a href="#"><%= productData[i-1].category %></a>
+              </div><!-- End .product-cat -->
+              <h3 class="product-title"><a href="product.html"><%= productData[i-1].productname %></a></h3><!-- End .product-title -->
+              <div class="product-price">
+                <span class="new-price"><%= productData[i-1].price %></span>
+
+              </div><!-- End .product-price -->
+            </div><!-- End .product-body -->
+          </div><!-- End .product -->
+          <% } else{ %>
+          <% }  %>
+
+          <% }} else{ %>
+          <tr>
+            <td colspan="5">Products Not Found</td>
+          </tr>
+          <% } %>
+        </div><!-- End .owl-carousel -->
+      </div><!-- .End .tab-pane -->
+    </div><!-- End .tab-content -->
+  </div><!-- End .container -->
+
+  <div class="mb-5"></div><!-- End .mb-5 -->
+
+  <div class="deal bg-image pt-8 pb-8" style="background-image: url(assets/images/demos/demo-6/deal/bg-1.jpg);">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-8 col-lg-6">
+          <div class=" text-center ">
+            <h5 style="color:white ;">Limited quantities. </h5>
+            <h2 style="color:white ;">Deal of the Day</h2>
+
+            <div class="deal-countdown  " style="background-color:whitesmoke;" data-until="+10h"> </div><!-- End .deal-countdown -->
+          </div><!-- End .deal-content -->
+          <div class="row deal-products">
+            <div class="col-6 deal-product text-center">
+              <figure class="product-media">
+                <a href="product.html">
+                  <img src="assets/images/demos/demo-6/deal/product-1.jpg" alt="Product image" class="product-image">
+                </a>
+
+              </figure><!-- End .product-media -->
+
+              <div class="product-body">
+                <h3 class="product-title" style="color:white"><a href="product.html">Light Dumbles</a></h3><!-- End .product-title -->
+                <div class="product-price">
+                  
+                </div><!-- End .product-price -->
+              </div><!-- End .product-body -->
+              <a href="/shoplist" class="action">shop now</a>
+            </div>
+            <div class="col-6 deal-product text-center">
+              <figure class="product-media">
+                <a href="product.html">
+                  <img src="assets/images/demos/demo-6/deal/product-2.jpg" alt="Product image" class="product-image">
+                </a>
+
+              </figure><!-- End .product-media -->
+
+              <div class="product-body">
+                <h3 class="product-title" style="color:white"><a href="product.html">Flex Monitor</a></h3><!-- End .product-title -->
+                <div class="product-price">
+                  <span class="new-price"></span>
+                  <span class="old-price"></span>
+                </div><!-- End .product-price -->
+              </div><!-- End .product-body -->
+              <a href="/shoplist" class="action">shop now</a>
+            </div>
+          </div>
+        </div><!-- End .col-lg-5 -->
+      </div><!-- End .row -->
+    </div><!-- End .container -->
+  </div><!-- End .deal -->
+
+  <div class="pt-4 pb-3" style="background-color: #222;">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-3 col-sm-6">
+          <div class="icon-box text-center">
+            <span class="icon-box-icon">
+              <i class="icon-truck"></i>
+            </span>
+            <div class="icon-box-content">
+              <h3 class="icon-box-title">Payment & Delivery</h3><!-- End .icon-box-title -->
+              <p>Free shipping for orders over $50</p>
+            </div><!-- End .icon-box-content -->
+          </div><!-- End .icon-box -->
+        </div><!-- End .col-lg-3 col-sm-6 -->
+
+        <div class="col-lg-3 col-sm-6">
+          <div class="icon-box text-center">
+            <span class="icon-box-icon">
+              <i class="icon-rotate-left"></i>
+            </span>
+            <div class="icon-box-content">
+              <h3 class="icon-box-title">Return & Refund</h3><!-- End .icon-box-title -->
+              <p>Free 100% money back guarantee</p>
+            </div><!-- End .icon-box-content -->
+          </div><!-- End .icon-box -->
+        </div><!-- End .col-lg-3 col-sm-6 -->
+
+        <div class="col-lg-3 col-sm-6">
+          <div class="icon-box text-center">
+            <span class="icon-box-icon">
+              <i class="icon-unlock"></i>
+            </span>
+            <div class="icon-box-content">
+              <h3 class="icon-box-title">Secure Payment</h3><!-- End .icon-box-title -->
+              <p>100% secure payment</p>
+            </div><!-- End .icon-box-content -->
+          </div><!-- End .icon-box -->
+        </div><!-- End .col-lg-3 col-sm-6 -->
+
+        <div class="col-lg-3 col-sm-6">
+          <div class="icon-box text-center">
+            <span class="icon-box-icon">
+              <i class="icon-headphones"></i>
+            </span>
+            <div class="icon-box-content">
+              <h3 class="icon-box-title">Quality Support</h3><!-- End .icon-box-title -->
+              <p>Alway online feedback 24/7</p>
+            </div><!-- End .icon-box-content -->
+          </div><!-- End .icon-box -->
+        </div><!-- End .col-lg-3 col-sm-6 -->
+      </div><!-- End .row -->
+    </div><!-- End .container -->
+  </div><!-- End .bg-light pt-2 pb-2 -->
+
+  <div class="mb-6"></div><!-- End .mb-5 -->
+
+  <div class="container">
+    <h2 class="title text-center mb-4">Top Rated</h2><!-- End .title text-center -->
+
+    <div class="products">
+      <div class="row justify-content-center">
+
+
+        <% if( productData.length > 0){ %>
+
+        
+
+        <%   for(let i = 1;i <= productData.length; i++){ %>
+
+          <% if( productData[i-1].rating >= 4){ %>
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="product product-7 text-center">
+            <figure class="product-media">
+              <a href="/product?id=<%= productData[i-1]._id %>">
+
+                <% if(productData[i-1].image) { %>
+                <img src="./productsImage/<%= productData[i-1].image %>" alt="<%= productData[i-1].image %>" class="product-image">
+                <% }else{ %>
+                Image Not Found
+                <% } %>
+                <img src="" alt="" class="product-image-hover">
+              </a>
+
+              <div class="product-action-vertical">            
+                  <button onclick="addToWish('<%= productData[i-1]._id %>')" class="btn-product-icon btn-wishlist "></button>
+              </div><!-- End .product-action-vertical -->
+
+              <div class="product-action">
+            
+                <button onclick="addToCart('<%= productData[i-1]._id %>')" class="btn-product btn-cart border-0 btn-outline-primary" > <span>add to cart</span></button>
+
+              </div>
+            
+            </figure><!-- End .product-media -->
+
+            <div class="product-body">
+              <div class="product-cat">
+                <a href="#"><%= productData[i-1].category %></a>
+              </div><!-- End .product-cat -->
+              <h3 class="product-title"><a href="product.html"><%= productData[i-1].productname %></a></h3><!-- End .product-title -->
+              <div class="product-price">
+                <%= productData[i-1].price %>
+              </div><!-- End .product-price -->
+
+              <div class="product-nav product-nav-thumbs">
+                <a href="#" class="active">
+                  <img src="./productsImage/<%= productData[i-1].image %>" alt="product desc">
+                </a>
+                <a href="#">
+                  <img src="./productsImage/<%= productData[i-1].image %>" alt="product desc">
+                </a>
+              </div><!-- End .product-nav -->
+            </div><!-- End .product-body -->
+          </div><!-- End .product -->
+        </div><!-- End .col-sm-6 col-md-4 col-lg-3 -->
+
+         
+        <% }} }else{ %>
+        <tr>
+          <td colspan="5">Products Not Found</td>
+        </tr>
+        <% } %>
+      </div><!-- End .row -->
+    </div><!-- End .products -->
+
+    <div class="more-container text-center mt-2">
+      <a href="/shoplist" class="btn btn-outline-dark-2 btn-more"><span>show more</span></a>
+    </div><!-- End .more-container -->
+  </div><!-- End .container -->
+
+  
+
+  <div class="mb-2"></div><!-- End .mb-5 -->
+
+  <div class="container">
+  </div><!-- End .container -->
+
+
+</main><!-- End .main -->
+
+<%- include('../partials/indexfooter.ejs')-%>

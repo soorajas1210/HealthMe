@@ -1,0 +1,358 @@
+<% if(isLoggedin) { %> <%- include('../partials/userlogedinhead 2.ejs')-%> <%
+}else { %> <%- include('../partials/userheader.ejs')-%> <% } %>
+
+<main class="main">
+  <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
+    <div class="container d-flex align-items-center">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item"><a href="#">Products</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Default</li>
+      </ol>
+
+      <nav class="product-pager ml-auto" aria-label="Product">
+        <a
+          class="product-pager-link product-pager-prev"
+          href="#"
+          aria-label="Previous"
+          tabindex="-1"
+        >
+          <i class="icon-angle-left"></i>
+          <span>Prev</span>
+        </a>
+
+        <a
+          class="product-pager-link product-pager-next"
+          href="#"
+          aria-label="Next"
+          tabindex="-1"
+        >
+          <span>Next</span>
+          <i class="icon-angle-right"></i>
+        </a>
+      </nav>
+      <!-- End .pager-nav -->
+    </div>
+    <!-- End .container -->
+  </nav>
+  <!-- End .breadcrumb-nav -->
+
+  <div class="page-content">
+    <div class="container">
+      <div class="product-details-top">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="product-gallery product-gallery-vertical">
+              <div class="row">
+                <figure class="product-main-image">
+                  <img
+                    id="product-zoom"
+                    src="./productsImage/<%= productData[0].image %>"
+                    data-zoom-image="./productsImage/<%= productData[0].image %>"
+                    alt="product image"
+                  />
+
+                  <a
+                    href="#"
+                    id="btn-product-gallery"
+                    class="btn-product-gallery"
+                  >
+                    <i class="icon-arrows"></i>
+                  </a>
+                </figure>
+                <!-- End .product-main-image -->
+
+                <div id="product-zoom-gallery" class="product-image-gallery">
+                  <a
+                    class="product-gallery-item active"
+                    href="#"
+                    data-image="./productsImage/<%= productData[0].image %>"
+                    data-zoom-image="./productsImage/<%= productData[0].image %>"
+                  >
+                    <img
+                      src="./productsImage/<%= productData[0].image %>"
+                      alt="product side"
+                    />
+                  </a>
+                  <a
+                    class="product-gallery-item"
+                    href="#"
+                    data-image="./productsImage/<%= productData[0].image %>"
+                    data-zoom-image="./productsImage/<%= productData[0].image %>"
+                  >
+                    <img
+                      src="./productsImage/<%= productData[0].image %>"
+                      alt="product cross"
+                    />
+                  </a>
+                </div>
+                <!-- End .product-image-gallery -->
+              </div>
+              <!-- End .row -->
+            </div>
+            <!-- End .product-gallery -->
+          </div>
+          <!-- End .col-md-6 -->
+
+          <div class="col-md-6">
+            <div class="product-details">
+              <h1 class="product-title"><%= productData[0].productname %></h1>
+              <!-- End .product-title -->
+
+              <div class="ratings-container">
+                <div class="ratings">
+                  <div
+                    class="ratings-val"
+                    style="width: <%= (productData[0].rating / 5) * 100 %>%"
+                  ></div>
+                  <!-- End .ratings-val -->
+                </div>
+                <!-- End .ratings -->
+                <a
+                  class="ratings-text"
+                  href="#product-review-link"
+                  id="review-link"
+                  >( )</a
+                >
+              </div>
+              <!-- End .rating-container -->
+
+              <div class="product-price">Rs: <%= productData[0].price %></div>
+              <!-- End .product-price -->
+
+              <div class="product-content">
+                <p><%= productData[0].pdescription %></p>
+              </div>
+              <!-- End .product-content -->
+
+              <div class="details-filter-row details-row-size">
+                <label>Color:</label>
+
+                <div class="product-nav product-nav-thumbs">
+                  <a href="#" class="active">
+                    <img
+                      src="./productsImage/<%= productData[0].image %>"
+                      alt="product desc"
+                    />
+                  </a>
+                  <a href="#">
+                    <img
+                      src="./productsImage/<%= productData[0].image %>"
+                      alt="product desc"
+                    />
+                  </a>
+                </div>
+                <!-- End .product-nav -->
+              </div>
+              <!-- End .details-filter-row -->
+
+              <!-- End .details-filter-row -->
+
+              <div class="details-filter-row details-row-size">
+                <label for="qty">Stock: </label>
+                <% if(productData[0].quantity >0){ %>
+
+                <td class="stock-col">
+                  <span class="in-stock"> In Stock</span>
+                </td>
+                <% } else { %>
+                <td class="stock-col">
+                  <span class="in-stock"> Out of Stock</span>
+                </td>
+                <% } %>
+                <!-- End .product-details-quantity -->
+              </div>
+              <!-- End .details-filter-row -->
+
+              <div class="product-details-action">
+                <div class="details-action-wrapper">          
+                <button onclick="addToCart('<%= productData[0]._id %>')" class="btn-product btn-cart border-0 btn-outline-primary" > <span>add to cart</span></button>
+               </div>
+
+                <div class="details-action-wrapper">        
+                <button onclick="addToWish('<%= productData[0]._id %>')" class="btn-product btn-cart border-0 btn-outline-primary"><span>add to wishlist</span></button>             
+                </div>
+                <!-- End .details-action-wrapper -->
+              </div>
+              <!-- End .product-details-action -->
+
+              <div class="product-details-footer">
+                <div class="product-cat">
+                  <span>Category:</span>
+                  <a href="#">Strength</a>, <a href="#">Cardio</a>,
+                  <a href="#">Other</a>
+                </div>
+                <!-- End .product-cat -->
+              </div>
+              <!-- End .product-details-footer -->
+            </div>
+            <!-- End .product-details -->
+          </div>
+          <!-- End .col-md-6 -->
+        </div>
+        <!-- End .row -->
+      </div>
+      <!-- End .product-details-top -->
+
+      <div class="product-details-tab">
+        <ul class="nav nav-pills justify-content-center" role="tablist">
+          <li class="nav-item">
+            <a
+              class="nav-link active"
+              id="product-desc-link"
+              data-toggle="tab"
+              href="#product-desc-tab"
+              role="tab"
+              aria-controls="product-desc-tab"
+              aria-selected="true"
+              >Description</a
+            >
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div
+            class="tab-pane fade show active"
+            id="product-desc-tab"
+            role="tabpanel"
+            aria-labelledby="product-desc-link"
+          >
+            <div class="product-desc-content">
+              <h3>Product Information</h3>
+              <p><%= productData[0].pdescription %></p>
+            </div>
+            <!-- End .product-desc-content -->
+          </div>
+          <!-- .End .tab-pane -->
+
+          <!-- .End .tab-pane -->
+        </div>
+        <!-- End .tab-content -->
+      </div>
+      <!-- End .product-details-tab -->
+
+      <h2 class="title text-center mb-4">You May Also Like</h2>
+      <!-- End .title text-center -->
+
+      <div
+        class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow"
+        data-toggle="owl"
+        data-owl-options='{
+                            "nav": false, 
+                            "dots": true,
+                            "margin": 20,
+                            "loop": false,
+                            "responsive": {
+                                "0": {
+                                    "items":1
+                                },
+                                "480": {
+                                    "items":2
+                                },
+                                "768": {
+                                    "items":3
+                                },
+                                "992": {
+                                    "items":4
+                                },
+                                "1200": {
+                                    "items":4,
+                                    "nav": true,
+                                    "dots": false
+                                }
+                            }
+                        }'
+      >
+        <% if( product.length > 0){ %> <% for(let i = 1;i <= product.length;
+        i++){ %> <%if(productData[0].category == product[i-1].category) { %>
+        <div class="product product-7 text-center">
+          <figure class="product-media">
+            <span class="product-label label-new">New</span>
+            <a href="product.html">
+              <img
+                src="./productsImage/<%= product[i-1].image %>"
+                alt="Product image"
+                class="product-image"
+              />
+            </a>
+
+            <div class="product-action-vertical">
+              <div class="product-action-vertical">            
+                <button onclick="addToWish('<%= product[i-1]._id %>')" class="btn-product-icon btn-wishlist "></button>
+              </div>
+              <a
+                href="popup/quickView.html"
+                class="btn-product-icon btn-quickview"
+                title="Quick view"
+                ><span>Quick view</span></a
+              >
+             
+            </div>
+            <!-- End .product-action-vertical -->
+
+            <div class="product-action">          
+                <button onclick="addToCart('<%= product[i-1]._id %>')" class="btn-product btn-cart border-0 btn-outline-primary" > <span>add to cart</span></button>
+              </div>
+            <!-- End .product-action -->
+          </figure>
+          <!-- End .product-media -->
+
+          <div class="product-body">
+            <div class="product-cat">
+              <a href="#"><%= product[i-1].category %></a>
+            </div>
+            <!-- End .product-cat -->
+            <h3 class="product-title">
+              <a href="product.html"><%= product[i-1].productname%></a>
+            </h3>
+            <!-- End .product-title -->
+            <div class="product-price">Price :<%= product[i-1].price%></div>
+            <!-- End .product-price -->
+            <div class="ratings-container">
+              <div class="ratings">
+                <div
+                  class="ratings-val"
+                  style="width: <%=(product[0].rating / 5) * 100 %> %"
+                ></div>
+                <!-- End .ratings-val -->
+              </div>
+              <!-- End .ratings -->
+              <span class="ratings-text"></span>
+            </div>
+            <!-- End .rating-container -->
+
+            <div class="product-nav product-nav-thumbs">
+              <a href="#" class="active">
+                <img
+                  src="./productsImage/<%= product[i-1].image %>"
+                  alt="product desc"
+                />
+              </a>
+              <a href="#">
+                <img
+                  src="./productsImage/<%= product[i-1].image %>"
+                  alt="product desc"
+                />
+              </a>
+            </div>
+            <!-- End .product-nav -->
+          </div>
+          <!-- End .product-body -->
+        </div>
+        <!-- End .product -->
+        <% } %> <% }} else{ %>
+        <tr>
+          <td colspan="5">Products Not Found</td>
+        </tr>
+        <% } %>
+
+        <!-- End .product -->
+      </div>
+      <!-- End .owl-carousel -->
+    </div>
+    <!-- End .container -->
+  </div>
+  <!-- End .page-content -->
+</main>
+<!-- End .main -->
+
+<%- include('../partials/userfooter.ejs') -%>

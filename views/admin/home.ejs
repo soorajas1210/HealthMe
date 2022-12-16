@@ -1,0 +1,185 @@
+<%- include("../partials/adminHeader") -%>
+<!-- ============================================================== -->
+<!-- End Topbar header -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Left Sidebar - style you can find in sidebar.scss  -->
+<!-- ============================================================== -->
+<%- include("../partials/adminSidebar") -%>
+<!-- ============================================================== -->
+<!-- End Left Sidebar - style you can find in sidebar.scss  -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Page wrapper  -->
+<!-- ============================================================== -->
+<div class="page-wrapper">
+  <!-- ============================================================== -->
+  <!-- Bread crumb and right sidebar toggle -->
+  <!-- ============================================================== -->
+
+  <!-- ============================================================== -->
+  <!-- End Bread crumb and right sidebar toggle -->
+  <!-- ============================================================== -->
+  <!-- ============================================================== -->
+  <!-- Container fluid  -->
+  <!-- ============================================================== -->
+  <div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Sales chart -->
+    <!-- ============================================================== -->
+
+    <!-- ============================================================== -->
+    <!-- Sales chart -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Table -->
+    <!-- ============================================================== -->
+    <div class="row">
+      <!-- column -->
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <!-- title -->
+            <div class="d-md">
+
+              <div class="col-7">
+                <form action="/admin/user-page">
+                  <div class="form-outline mb-4">
+                    <input type="search" class="form-control" placeholder="Search" name="search">
+                  </div>
+                </form>
+              </div>
+
+
+              <div>
+                <h4 class="card-title">Users List</h4>
+                <h5 class="card-subtitle">List of Users</h5>
+              </div>
+
+            </div>
+            <!-- title -->
+          </div>
+          <div class="table-responsive upgrade-btn ">
+            <table class="table v-middle text-center table-hover  ">
+              <thead>
+                <tr class="bg-light">
+                  <th class="border-top-0">SI NO</th>
+                  <th class="border-top-0">USER</th>
+                  <th class="border-top-0">E-MAIL</th>
+                  <th class="border-top-0">MOBILE NO</th>
+                  <th class="border-top-0">Status</th>
+                  <th class="border-top-0">ACTION</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% if( users.length > 0){ %>
+                <%   for(let i = 1;i <= users.length; i++){ %>
+                <tr>
+                  <td>
+                    <%= i %>
+                  </td>
+
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <div class="m-r-10"><a class="btn btn-circle d-flex btn-info text-white"><i class=" mdi mdi-account-circle"></i></a>
+                      </div>
+                      <div class="">
+                        <h4 class="m-b-0 font-16">
+                          <%= users[i-1].firstname %>
+                          <%= users[i-1].lastname %>
+                        </h4>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <%= users[i-1].email %>
+                  </td>
+                  <td>
+                    <%= users[i-1].mobileno %>
+                  </td>
+                  <td>
+                    <% if(users[i-1].isVerified) { %>
+                    <label class="btn-success">
+                      <i class="m-r-10 mdi mdi-account">UnBlocked</i></label>
+                    <% } else { %>
+                    <label class="btn-danger">
+                      <i class="m-r-10 mdi mdi-account-off">Blocked</i></label>
+                    <% } %>
+                    </label>
+                  </td>
+
+                  <td>
+                    <!-- Default switch -->
+
+                    <% if(users[i-1].isVerified) { %>
+                    <a class="btn btn-sm btn-outline-danger block" href="/admin/block-user?id=<%= users[i-1]._id %> ">Block</a>
+                    <% } else { %>
+
+                    <a class="btn btn-sm btn-outline-success block" href="/admin/block-user?id=<%= users[i-1]._id %> ">Unblock</a>
+                    <% } %>
+                  </td>
+                  <td>
+
+                    <a href="/admin/delete-user?id=<%= users[i-1]._id %>" class="btn btn-sm btn-outline-danger delete"> Delete </a>
+
+                  </td>
+
+
+
+                </tr>
+                <% } } else{ %>
+                <tr>
+                  <td colspan="5">Users Not Found</td>
+                </tr>
+                <% } %>
+              </tbody>
+            </table>
+            <br>
+            <br>
+
+            <nav aria-label="Page navigation">
+              <ul class="pagination justify-content-center">
+                <li class="page-item ">
+                  <a class="page-link page-link-prev" href="?page=<%= previous %>" aria-label="Previous" tabindex="-1" aria-disabled="true">
+                    <span aria-hidden="true"><i class="icon-long-arrow-left"></i></span>Prev
+                  </a>
+                </li>
+                <% for(let i=1; i<= totalPages; i++) { %>
+                <%  if(currentPage == i) { %>
+                <li class="page-item active" area-current="page"><a class="page-link" href="?page=<%= i %>"><%= i %> </a></li>
+                <% } else { %>
+                <li class="page-item " area-current="page"><a class="page-link" href="?page=<%= i %>"><%= i %> </a></li>
+                <% } %>
+
+                <%  } %>
+                <li class="page-item">
+                  <a class="page-link page-link-next" href="?page=<%= next %>" aria-label="Next">
+                    Next <span aria-hidden="true"><i class="icon-long-arrow-right"></i></span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+            <br>
+            <br>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Table -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Recent comment and chats -->
+    <!-- ============================================================== -->
+
+    <!-- ============================================================== -->
+    <!-- Recent comment and chats -->
+    <!-- ============================================================== -->
+  </div>
+  <!-- ============================================================== -->
+  <!-- End Container fluid  -->
+  <!-- ============================================================== -->
+  <!-- ============================================================== -->
+  <!-- footer -->
+  <!-- ============================================================== -->
+  <%- include("../partials/admin-footer.ejs") -%>

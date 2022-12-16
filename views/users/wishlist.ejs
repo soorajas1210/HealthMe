@@ -1,0 +1,136 @@
+<% if(isLoggedin) { %> <%- include('../partials/userlogedinhead 2.ejs')-%> <%
+}else { %> <%- include('../partials/userheader.ejs')-%> <% } %>
+
+<main class="main">
+  <div
+    class="page-header text-center"
+    style="background-image: url('assets/images/page-header-bg.jpg')"
+  >
+    <div class="container">
+      <h1 class="page-title">Wishlist<span>Shop</span></h1>
+    </div>
+    <!-- End .container -->
+  </div>
+  <!-- End .page-header -->
+  <nav aria-label="breadcrumb" class="breadcrumb-nav">
+    <div class="container">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item"><a href="#">Shop</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Wishlist</li>
+      </ol>
+    </div>
+    <!-- End .container -->
+  </nav>
+  <!-- End .breadcrumb-nav -->
+
+  <div class="page-content">
+    <div class="container">
+      <table class="table table-wishlist table-mobile">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Stock Status</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% if( wish != null ){ %> <% for(let i = 1 ;i <= wish.length; i++){ %>
+          <tr>
+            <td class="product-col">
+              <div class="product">
+                <figure class="product-media">
+                  <a href="#">
+                    <img
+                      src="./productsImage/<%= wish[i-1].productId.image %>"
+                      alt="Product image"
+                    />
+                  </a>
+                </figure>
+
+                <h3 class="product-title">
+                  <a href="#"><%= wish[i-1].productId.productname %></a>
+                </h3>
+                <!-- End .product-title -->
+              </div>
+              <!-- End .product -->
+            </td>
+            <td class="price-col"><%= wish[i-1].productId.price %></td>
+            <% if(wish[i-1].productId.quantity >0){ %>
+
+            <td class="stock-col"><span class="in-stock"> In Stock</span></td>
+            <% } else { %>
+            <td class="stock-col">
+              <span class="in-stock"> Out of Stock</span>
+            </td>
+            <% } %> <% if(wish[i-1].productId.quantity >0){ %>
+            <td class="action-col">
+              <form
+                action="/wish-to-cart?id=<%= wish[i-1].productId._id %>"
+                method="post"
+              >
+                <button class="btn btn-block btn-outline-primary-2">
+                  <i class="icon-cart-plus"></i>Add to Cart
+                </button>
+                <input type="hidden" value="<%= wish[i-1]._id %>" name="wid" />
+              </form>
+            </td>
+            <% } else { %>
+            <td class="action-col">
+              <form action="/wishlist">
+                <button class="btn btn-block btn-outline-primary-2">
+                  <i class="icon-cart-plus"></i>Out Of Stock
+                </button>
+              </form>
+            </td>
+
+            <% } %>
+            <td class="remove-col">
+              <button class="btn-remove">
+                <a href="/delete-wishlist?id=<%= wish[i-1]._id %>"
+                  ><i class="icon-close"></i
+                ></a>
+              </button>
+            </td>
+          </tr>
+          <% }} else{ %>
+          <tr>
+            <td colspan="5">Wishlist is empty</td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+      <!-- End .table table-wishlist -->
+      <div class="wishlist-share">
+        <div class="social-icons social-icons-sm mb-2">
+          <label class="social-label">Share on:</label>
+          <a href="#" class="social-icon" title="Facebook" target="_blank"
+            ><i class="icon-facebook-f"></i
+          ></a>
+          <a href="#" class="social-icon" title="Twitter" target="_blank"
+            ><i class="icon-twitter"></i
+          ></a>
+          <a href="#" class="social-icon" title="Instagram" target="_blank"
+            ><i class="icon-instagram"></i
+          ></a>
+          <a href="#" class="social-icon" title="Youtube" target="_blank"
+            ><i class="icon-youtube"></i
+          ></a>
+          <a href="#" class="social-icon" title="Pinterest" target="_blank"
+            ><i class="icon-pinterest"></i
+          ></a>
+        </div>
+        <!-- End .soial-icons -->
+      </div>
+      <!-- End .wishlist-share -->
+    </div>
+    <!-- End .container -->
+  </div>
+  <!-- End .page-content -->
+</main>
+<!-- End .main -->
+
+<%- include('../partials/userfooter.ejs') -%>
