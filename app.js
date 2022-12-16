@@ -33,7 +33,7 @@ app.use(function (req, res, next) {
 //Setting port
 dotenv.config({ path: "config.env" });
 // eslint-disable-next-line no-undef
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 4000;
 
 //connecting to db and listening to port
 const callback = (err) => {
