@@ -4,22 +4,7 @@ const Order = require("../models/placeorderModel");
 const Category = require("../models/categoryModel");
 const Banner = require("../models/bannerModel");
 const bcrypt = require("bcrypt");
-const multer = require("multer");
-const path = require("path");
 const Offer = require("../models/offerModel");
-
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "./public/productsImage");
-  },
-  filename: (req, file, cb) => {
-    cb(
-      null,
-      file.fieldname + "_" + Date.now() + path.extname(file.originalname)
-    );
-  },
-});
-const upload = multer({ storage: storage }).single("image");
 
 let isLoggedin;
 isLoggedin = false;
@@ -229,12 +214,13 @@ const adminaddProducts = async (req, res) => {
 };
 const addnewProducts = async (req, res) => {
   try {
+    const files = req.files;
     const categoryData = await Category.find({});
     const name = req.body.name;
     const price = req.body.price;
     const quantity = req.body.quantity;
     const rating = req.body.rating;
-    const image = req.file.filename;
+    const image = files.map((x) => x.filename);
     const pdescription = req.body.pdescription;
     const category = req.body.category;
 
@@ -251,7 +237,10 @@ const addnewProducts = async (req, res) => {
     const productData = await product.save();
 
     if (productData) {
-      res.render("addproduct", { cat: categoryData });
+      res.render("addproduct", {
+        message: "Product added successfully.",
+        cat: categoryData,
+      });
     } else {
       res.render("addproduct", {
         cat: categoryData,
@@ -392,7 +381,7 @@ const updateProduct = async (req, res) => {
   try {
     const id = req.query.id;
     console.log(id);
-
+    const files = req.files;
     await Product.findByIdAndUpdate(
       { _id: id },
       {
@@ -402,7 +391,7 @@ const updateProduct = async (req, res) => {
           price: req.body.price,
           quantity: req.body.quantity,
           rating: req.body.rating,
-          image: req.file.filename,
+          image: files.map((x) => x.filename),
           pdescription: req.body.pdescription,
           category: req.body.category,
           information: req.body.information,
@@ -595,7 +584,6 @@ module.exports = {
   addnewProducts,
   editProduct,
   updateProduct,
-  upload,
   deleteProduct,
   viewOrder,
   adminCancelOrder,

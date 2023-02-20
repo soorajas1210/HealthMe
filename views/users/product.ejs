@@ -35,7 +35,7 @@
             <div class="product-gallery product-gallery-vertical">
               <div class="row">
                 <figure class="product-main-image">
-                  <img id="product-zoom" src="./productsImage/<%= productData[0].image %>" data-zoom-image="./productsImage/<%= productData[0].image %>" alt="product image" />
+                  <img id="product-zoom" src="./productsImage/<%= productData[0].image[0] %>" data-zoom-image="./productsImage/<%= productData[0].image[0] %>" alt="product image" />
 
                   <a href="#" id="btn-product-gallery" class="btn-product-gallery">
                     <i class="icon-arrows"></i>
@@ -44,11 +44,18 @@
                 <!-- End .product-main-image -->
 
                 <div id="product-zoom-gallery" class="product-image-gallery">
-                  <a class="product-gallery-item active" href="#" data-image="./productsImage/<%= productData[0].image %>" data-zoom-image="./productsImage/<%= productData[0].image %>">
-                    <img src="./productsImage/<%= productData[0].image %>" alt="product side" />
+                  <a class="product-gallery-item active" href="#" data-image="./productsImage/<%= productData[0].image[1] %>" data-zoom-image="./productsImage/<%= productData[0].image[1] %>">
+                    <img src="./productsImage/<%= productData[0].image[1] %>" alt="product side" />
                   </a>
-                  <a class="product-gallery-item" href="#" data-image="./productsImage/<%= productData[0].image %>" data-zoom-image="./productsImage/<%= productData[0].image %>">
-                    <img src="./productsImage/<%= productData[0].image %>" alt="product cross" />
+                  <a class="product-gallery-item" href="#" data-image="./productsImage/<%= productData[0].image[2] %>" data-zoom-image="./productsImage/<%= productData[0].image[2] %>">
+                    <img src="./productsImage/<%= productData[0].image[2] %>" alt="product cross" />
+                  </a>
+                  <a class="product-gallery-item" href="#" data-image="./productsImage/<%= productData[0].image[0] %>" data-zoom-image="./productsImage/<%= productData[0].image[0] %>">
+                     <img src="./productsImage/<%= productData[0].image[0] %>" alt="product with model">
+                  </a>
+
+                  <a class="product-gallery-item" href="#" data-image="./productsImage/<%= productData[0].image[3] %>" data-zoom-image="./productsImage/<%= productData[0].image[3] %>">
+                     <img src="./productsImage/<%= productData[0].image[3] %>" alt="product back">
                   </a>
                 </div>
                 <!-- End .product-image-gallery -->
@@ -87,10 +94,10 @@
 
                 <div class="product-nav product-nav-thumbs">
                   <a href="#" class="active">
-                    <img src="./productsImage/<%= productData[0].image %>" alt="product desc" />
+                    <img src="./productsImage/<%= productData[0].image[2] %>" alt="product desc" />
                   </a>
                   <a href="#">
-                    <img src="./productsImage/<%= productData[0].image %>" alt="product desc" />
+                    <img src="./productsImage/<%= productData[0].image[3] %>" alt="product desc" />
                   </a>
                 </div>
                 <!-- End .product-nav -->
@@ -199,9 +206,9 @@
         i++){ %> <%if(productData[0].category == product[i-1].category) { %>
         <div class="product product-7 text-center">
           <figure class="product-media">
-            <span class="product-label label-new">New</span>
-            <a href="product.html">
-              <img src="./productsImage/<%= product[i-1].image %>" alt="Product image" class="product-image" />
+            <span class="product-label label-new">You may like</span>
+            <a href="/product?id=<%= product[i-1]._id %>">
+              <img src="./productsImage/<%= product[i-1].image[0] %>" alt="Product image" class="product-image" />
             </a>
 
             <div class="product-action-vertical">
@@ -243,10 +250,10 @@
 
             <div class="product-nav product-nav-thumbs">
               <a href="#" class="active">
-                <img src="./productsImage/<%= product[i-1].image %>" alt="product desc" />
+                <img src="./productsImage/<%= product[i-1].image[1] %>" alt="product desc" />
               </a>
               <a href="#">
-                <img src="./productsImage/<%= product[i-1].image %>" alt="product desc" />
+                <img src="./productsImage/<%= product[i-1].image[2] %>" alt="product desc" />
               </a>
             </div>
             <!-- End .product-nav -->

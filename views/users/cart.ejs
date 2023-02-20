@@ -36,7 +36,7 @@
               </thead>
 
               <tbody>
-
+<% if(isLoggedin) { %>
                 <% if( cart != null ){ %>
 
                 <%   for(let i = 1 ;i <= cart.length; i++){ %>
@@ -45,7 +45,7 @@
                     <div class="product">
                       <figure class="product-media">
                         <a href="#">
-                          <img src="./productsImage/<%= cart[i-1].productId.image %>" alt="Product image">
+                          <img src="./productsImage/<%= cart[i-1].productId.image[0] %>" alt="Product image">
                         </a>
                       </figure>
 
@@ -75,7 +75,14 @@
                 <tr>
                   <td colspan="5">Cart is empty</td>
                 </tr>
-                <% } %>
+                <% }}else{ %>
+ <tr>
+            <h4>User Not Signed in. <br> Sign in now!!! <a href="/login">Click here</a></h4>
+            <td colspan="5"><h3> Cart is Empty</h3></td>
+ </tr>
+
+
+                  <% } %>
 
               </tbody>
             </table><!-- End .table table-wishlist -->

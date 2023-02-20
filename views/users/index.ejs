@@ -164,8 +164,8 @@
           <div class="product product-7 text-center">
             <figure class="product-media">
               <a href="/product?id=<%= productData[i-1]._id %>">
-                <img src="./productsImage/<%= productData[i-1].image %>" alt="Product image" class="product-image">
-                <img src="./productsImage/<%= productData[i-1].image %>" alt="Product image" class="product-image-hover">
+                <img src="./productsImage/<%= productData[i-1].image[0] %>" alt="Product image" class="product-image">
+                <img src="./productsImage/<%= productData[i-1].image[1] %>" alt="Product image" class="product-image-hover">
               </a>
 
               <div class="product-action-vertical">
@@ -188,13 +188,13 @@
 
               <div class="product-nav product-nav-thumbs">
                 <a href="#" class="active">
-                  <img src="./productsImage/<%= productData[i-1].image %>" alt="product desc">
+                  <img src="./productsImage/<%= productData[i-1].image[1] %>" alt="product desc">
                 </a>
                 <a href="#">
-                  <img src="./productsImage/<%= productData[i-1].image %>" alt="product desc">
+                  <img src="./productsImage/<%= productData[i-1].image[2] %>" alt="product desc">
                 </a>
                 <a href="#">
-                  <img src="./productsImage/<%= productData[i-1].image %>" alt="product desc">
+                  <img src="./productsImage/<%= productData[i-1].image[3] %>" alt="product desc">
                 </a>
               </div><!-- End .product-nav -->
             </div><!-- End .product-body -->
@@ -243,20 +243,19 @@
 
           <div class="product product-7 text-center">
             <figure class="product-media">
-              <span class="product-label label-sale"></span>
+             
               <a href="/product?id=<%= productData[i-1]._id %>">
-                <img src="./productsImage/<%= productData[i-1].image %>" alt="Product image" class="product-image">
-                <img src="./productsImage/<%= productData[i-1].image %>" alt="Product image" class="product-image-hover">
+                <img src="./productsImage/<%= productData[i-1].image[0] %>" alt="Product image" class="product-image">
+                <img src="./productsImage/<%= productData[i-1].image[1] %>" alt="Product image" class="product-image-hover">
               </a>
 
               <div class="product-action-vertical">
                 <button onclick="addToWish('<%= productData[i-1]._id %>')" class="btn-product-icon btn-wishlist "></button>
-              </div>>
-              <!-- End .product-action-vertical -->
+              </div><!-- End .product-action-vertical -->
 
               <div class="product-action">
                 <button onclick="addToCart('<%= productData[i-1]._id %>')" class="btn-product btn-cart border-0 btn-outline-primary"> <span>add to cart</span></button>
-              </div><!-- End .product-action -->
+              </div>
             </figure><!-- End .product-media -->
 
             <div class="product-body">
@@ -265,9 +264,19 @@
               </div><!-- End .product-cat -->
               <h3 class="product-title"><a href="product.html"><%= productData[i-1].productname %></a></h3><!-- End .product-title -->
               <div class="product-price">
-                <span class="new-price">Now <%= productData[i-1].category %></span>
-
+                <%= productData[i-1].price %>
               </div><!-- End .product-price -->
+              <div class="product-nav product-nav-thumbs">
+                <a href="#" class="active">
+                  <img src="./productsImage/<%= productData[i-1].image[1] %>" alt="product desc">
+                </a>
+                <a href="#">
+                  <img src="./productsImage/<%= productData[i-1].image[2] %>" alt="product desc">
+                </a>
+                <a href="#">
+                  <img src="./productsImage/<%= productData[i-1].image[3] %>" alt="product desc">
+                </a>
+              </div><!-- End .product-nav -->
             </div><!-- End .product-body -->
           </div><!-- End .product -->
 
@@ -316,10 +325,10 @@
           <% if(productData[i-1].category == "Cardio") { %>
           <div class="product product-7 text-center">
             <figure class="product-media">
-              <span class="product-label label-sale">sale</span>
+            
               <a href="/product?id=<%= productData[i-1]._id %>">
-                <img src="./productsImage/<%= productData[i-1].image %>" alt="Product image" class="product-image">
-                <img src="./productsImage/<%= productData[i-1].image %>" alt="Product image" class="product-image-hover">
+                <img src="./productsImage/<%= productData[i-1].image[0] %>" alt="Product image" class="product-image">
+                <img src="./productsImage/<%= productData[i-1].image[1] %>" alt="Product image" class="product-image-hover">
               </a>
 
               <div class="product-action-vertical">
@@ -339,9 +348,20 @@
               </div><!-- End .product-cat -->
               <h3 class="product-title"><a href="product.html"><%= productData[i-1].productname %></a></h3><!-- End .product-title -->
               <div class="product-price">
-                <span class="new-price"><%= productData[i-1].price %></span>
+                <span ><%= productData[i-1].price %></span>
 
               </div><!-- End .product-price -->
+              <div class="product-nav product-nav-thumbs">
+                <a href="#" class="active">
+                  <img src="./productsImage/<%= productData[i-1].image[1] %>" alt="product desc">
+                </a>
+                <a href="#">
+                  <img src="./productsImage/<%= productData[i-1].image[2] %>" alt="product desc">
+                </a>
+                <a href="#">
+                  <img src="./productsImage/<%= productData[i-1].image[3] %>" alt="product desc">
+                </a>
+              </div><!-- End .product-nav -->
             </div><!-- End .product-body -->
           </div><!-- End .product -->
           <% } else{ %>
@@ -389,8 +409,8 @@
             <figure class="product-media">
               <span class="product-label label-sale">sale</span>
               <a href="/product?id=<%= productData[i-1]._id %>">
-                <img src="./productsImage/<%= productData[i-1].image %>" alt="Product image" class="product-image">
-                <img src="./productsImage/<%= productData[i-1].image %>" alt="Product image" class="product-image-hover">
+                <img src="./productsImage/<%= productData[i-1].image[0] %>" alt="Product image" class="product-image">
+                <img src="./productsImage/<%= productData[i-1].image[1] %>" alt="Product image" class="product-image-hover">
               </a>
 
               <div class="product-action-vertical">
@@ -410,9 +430,20 @@
               </div><!-- End .product-cat -->
               <h3 class="product-title"><a href="product.html"><%= productData[i-1].productname %></a></h3><!-- End .product-title -->
               <div class="product-price">
-                <span class="new-price"><%= productData[i-1].price %></span>
+                <span ><%= productData[i-1].price %></span>
 
               </div><!-- End .product-price -->
+              <div class="product-nav product-nav-thumbs">
+                <a href="#" class="active">
+                  <img src="./productsImage/<%= productData[i-1].image[1] %>" alt="product desc">
+                </a>
+                <a href="#">
+                  <img src="./productsImage/<%= productData[i-1].image[2] %>" alt="product desc">
+                </a>
+                <a href="#">
+                  <img src="./productsImage/<%= productData[i-1].image[3] %>" alt="product desc">
+                </a>
+              </div><!-- End .product-nav -->
             </div><!-- End .product-body -->
           </div><!-- End .product -->
           <% } else{ %>
@@ -443,14 +474,14 @@
           <div class="row deal-products">
             <div class="col-6 deal-product text-center">
               <figure class="product-media">
-                <a href="product.html">
+                <a href="/shoplist">
                   <img src="assets/images/demos/demo-6/deal/product-1.jpg" alt="Product image" class="product-image">
                 </a>
 
               </figure><!-- End .product-media -->
 
               <div class="product-body">
-                <h3 class="product-title" style="color:white"><a href="product.html">Light Dumbles</a></h3><!-- End .product-title -->
+                <h3 class="product-title" style="color:white"><a href="/shoplist">Light Dumbles</a></h3><!-- End .product-title -->
                 <div class="product-price">
 
                 </div><!-- End .product-price -->
@@ -459,14 +490,14 @@
             </div>
             <div class="col-6 deal-product text-center">
               <figure class="product-media">
-                <a href="product.html">
+                <a href="/shoplist">
                   <img src="assets/images/demos/demo-6/deal/product-2.jpg" alt="Product image" class="product-image">
                 </a>
 
               </figure><!-- End .product-media -->
 
               <div class="product-body">
-                <h3 class="product-title" style="color:white"><a href="product.html">Flex Monitor</a></h3><!-- End .product-title -->
+                <h3 class="product-title" style="color:white"><a href="/shoplist">Flex Monitor</a></h3><!-- End .product-title -->
                 <div class="product-price">
                   <span class="new-price"></span>
                   <span class="old-price"></span>
@@ -556,7 +587,9 @@
               <a href="/product?id=<%= productData[i-1]._id %>">
 
                 <% if(productData[i-1].image) { %>
-                <img src="./productsImage/<%= productData[i-1].image %>" alt="<%= productData[i-1].image %>" class="product-image">
+                <img src="./productsImage/<%= productData[i-1].image[0] %>" alt="Product image" class="product-image">
+                <img src="./productsImage/<%= productData[i-1].image[1] %>" alt="Product image" class="product-image-hover">
+
                 <% }else{ %>
                 Image Not Found
                 <% } %>
@@ -586,10 +619,10 @@
 
               <div class="product-nav product-nav-thumbs">
                 <a href="#" class="active">
-                  <img src="./productsImage/<%= productData[i-1].image %>" alt="product desc">
+                  <img src="./productsImage/<%= productData[i-1].image[2] %>" alt="product desc">
                 </a>
                 <a href="#">
-                  <img src="./productsImage/<%= productData[i-1].image %>" alt="product desc">
+                  <img src="./productsImage/<%= productData[i-1].image[3] %>" alt="product desc">
                 </a>
               </div><!-- End .product-nav -->
             </div><!-- End .product-body -->

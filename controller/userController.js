@@ -227,7 +227,6 @@ const userDashboard = async (req, res) => {
     const userData = await User.findById({ _id: userSession.user_id });
 
     console.log(userData);
-
     const address = userData.address;
 
     if (orderData) {
@@ -405,19 +404,23 @@ const addtoWishlist = async (req, res) => {
         res.json({ status: true });
       }
     } else {
-      console.log("5");
-      const wish = new Wishlist({
-        userId: userId,
-        product: [
-          {
-            productId: p_id,
-            stockstatus: productData.stockstatus,
-            price: productData.price,
-          },
-        ],
-      });
-      await wish.save();
-      res.json({ status: true });
+      if (userId) {
+        console.log("new");
+        const wish = new Wishlist({
+          userId: userId,
+          product: [
+            {
+              productId: p_id,
+              stockstatus: productData.stockstatus,
+              price: productData.price,
+            },
+          ],
+        });
+        await wish.save();
+        res.json({ status: true });
+      } else {
+        res.json({ status: false });
+      }
     }
   } catch (error) {
     console.log(error.message);
@@ -426,27 +429,36 @@ const addtoWishlist = async (req, res) => {
 
 const loadWishlist = async (req, res) => {
   try {
-    const categoryData = await Category.find({});
     const userSession = req.session;
-    const wishlist = await Wishlist.findOne({
-      userId: userSession.user_id,
-    }).populate("product.productId");
-    if (wishlist) {
-      res.render("wishlist", {
-        wish: wishlist.product,
-        isLoggedin,
-        cat: categoryData,
-        wishCount,
-        cartCount,
-      });
+
+    const categoryData = await Category.find({});
+
+    if (userSession.user_id) {
+      const wishlist = await Wishlist.findOne({
+        userId: userSession.user_id,
+      }).populate("product.productId");
+      if (wishlist) {
+        res.render("wishlist", {
+          wish: wishlist.product,
+          isLoggedin,
+          cat: categoryData,
+          wishCount,
+          cartCount,
+          user: true,
+        });
+      } else {
+        res.render("wishlist", {
+          wish: null,
+          isLoggedin,
+          cat: categoryData,
+          wishCount,
+          cartCount,
+          user: true,
+        });
+      }
     } else {
-      res.render("wishlist", {
-        wish: wishlist,
-        isLoggedin,
-        cat: categoryData,
-        wishCount,
-        cartCount,
-      });
+      console.log("responsse");
+      res.render("wishlist", { cat: categoryData, isLoggedin, user: false });
     }
   } catch (error) {
     console.log(error.message);
@@ -552,10 +564,10 @@ const addtoCart = async (req, res) => {
     const userSession = req.session;
     const userId = userSession.user_id;
 
-    console.log(userId);
+    console.log("uid", userId);
     const isExisting = await Cart.findOne({ userId: userId });
     const productData = await Product.findOne({ _id: p_id });
-    console.log(isExisting);
+    console.log("exist", isExisting);
     console.log(productData.price);
 
     if (isExisting != null && productData.quantity >= 1) {
@@ -593,7 +605,7 @@ const addtoCart = async (req, res) => {
         res.json({ status: true });
       }
     } else {
-      if (productData.quantity >= 1) {
+      if (userId && productData.quantity >= 1) {
         console.log("5");
         const cart = new Cart({
           userId: userId,
@@ -608,7 +620,7 @@ const addtoCart = async (req, res) => {
         await cart.save();
         res.json({ status: true });
       } else {
-        res.redirect("/");
+        res.json({ status: false });
       }
     }
   } catch (error) {
@@ -642,49 +654,57 @@ const loadCart = async (req, res) => {
     const userSession = req.session;
     userSession.offer = offer;
 
-    const productData = await Cart.findOne({
-      userId: userSession.user_id,
-    }).populate("product.productId");
-    const userCart = await Cart.findOne({
-      userId: userSession.user_id,
-    }).populate("product.productId");
-    if (userCart) {
-      const totalPrice = productData.product.reduce((acc, curr) => {
-        return acc + curr.productId.price * curr.quantity;
-      }, 0);
-      productData.totalprice = totalPrice;
+    if (userSession.user_id) {
+      const productData = await Cart.findOne({
+        userId: userSession.user_id,
+      }).populate("product.productId");
+      const userCart = await Cart.findOne({
+        userId: userSession.user_id,
+      }).populate("product.productId");
 
-      await productData.save();
-      console.log("hi", userSession.couponTotal);
+      if (userCart) {
+        const totalPrice = productData.product.reduce((acc, curr) => {
+          return acc + curr.productId.price * curr.quantity;
+        }, 0);
+        productData.totalprice = totalPrice;
 
-      //update coupon
-      if (userSession.couponTotal == 0) {
-        userSession.couponTotal = totalPrice;
-        userSession.discount = discount;
+        await productData.save();
+        console.log("hi", userSession.couponTotal);
+
+        //update coupon
+        if (userSession.couponTotal == 0) {
+          userSession.couponTotal = totalPrice;
+          userSession.discount = discount;
+        }
+
+        console.log(userSession.couponTotal);
+
+        res.render("cart", {
+          cart: userCart.product,
+          isLoggedin,
+          totalprice: userSession.couponTotal,
+          discount: userSession.discount,
+          cat: categoryData,
+          wishCount,
+          cartCount,
+          coupon: userSession.coupon,
+        });
+      } else {
+        res.render("cart", {
+          cart: userCart,
+          isLoggedin,
+          totalprice: userSession.couponTotal,
+          discount: userSession.discount,
+          cat: categoryData,
+          wishCount,
+          cartCount,
+          coupon: userSession.coupon,
+        });
       }
-
-      console.log(userSession.couponTotal);
-
-      res.render("cart", {
-        cart: userCart.product,
-        isLoggedin,
-        totalprice: userSession.couponTotal,
-        discount: userSession.discount,
-        cat: categoryData,
-        wishCount,
-        cartCount,
-        coupon: userSession.coupon,
-      });
     } else {
       res.render("cart", {
-        cart: userCart,
         isLoggedin,
-        totalprice: userSession.couponTotal,
-        discount: userSession.discount,
-        cat: categoryData,
-        wishCount,
-        cartCount,
-        coupon: userSession.coupon,
+        cat: categoryData, coupon : null ,totalprice:null, discount:null
       });
     }
   } catch (error) {
@@ -1088,7 +1108,7 @@ const userLogout = async (req, res) => {
   try {
     const userSession = req.session;
     isLoggedin = false;
-    userSession.user_id = false;
+    userSession.user_id = null;
     res.redirect("/");
   } catch (error) {
     console.log(error.message);

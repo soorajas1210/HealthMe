@@ -35,13 +35,15 @@
         </thead>
 
         <tbody>
+          <% if(user== true) { %>
+
           <% if( wish != null ){ %> <% for(let i = 1 ;i <= wish.length; i++){ %>
           <tr>
             <td class="product-col">
               <div class="product">
                 <figure class="product-media">
                   <a href="#">
-                    <img src="./productsImage/<%= wish[i-1].productId.image %>" alt="Product image" />
+                    <img src="./productsImage/<%= wish[i-1].productId.image[0] %>" alt="Product image" />
                   </a>
                 </figure>
 
@@ -89,7 +91,14 @@
           <tr>
             <td colspan="5">Wishlist is empty</td>
           </tr>
-          <% } %>
+          <% } } else { %>
+
+ <tr>
+            <h4>User Not Signed in. <br> Sign in now!!! <a href="/login">Click here</a></h4>
+            <td colspan="5"><h3> Wishlist is Empty</h3></td>
+ </tr>
+
+            <% } %>
         </tbody>
       </table>
       <!-- End .table table-wishlist -->

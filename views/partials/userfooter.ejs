@@ -181,8 +181,8 @@
 <script>
   function addToCart(productId) {
     $.ajax({
-      url: '/cart?id=' + productId,
-      method: 'POST',
+      url: '/addToCart?id=' + productId,
+      method: 'GET',
       success: function(response) {
         if (response.status) {
           Swal.fire({
@@ -213,8 +213,8 @@
 
   function addToWish(productId) {
     $.ajax({
-      url: '/wishlist?id=' + productId,
-      method: 'POST',
+      url: '/addToWishlist?id=' + productId,
+      method: 'GET',
       success: function(response) {
         if (response.status) {
           Swal.fire({

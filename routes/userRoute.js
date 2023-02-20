@@ -19,17 +19,18 @@ userRoute.post("/otp-verify", userController.otpVerify);
 
 userRoute.get("/dashboard", auth.isLogin, userController.userDashboard);
 
+
 userRoute.get("/shoplist", userController.shopList);
 userRoute.get("/product", userController.productDetails);
 
-userRoute.get("/wishlist", auth.isLogin, userController.loadWishlist);
-userRoute.post("/wishlist", userController.addtoWishlist);
+userRoute.get("/wishlist", userController.loadWishlist);
+userRoute.get("/addToWishlist", userController.addtoWishlist);
 userRoute.get("/delete-wishlist", userController.deleteWishlist);
 userRoute.post("/wish-to-cart", userController.wishTocart);
 
 
-userRoute.get("/cart", auth.isLogin, userController.loadCart);
-userRoute.post("/cart", userController.addtoCart);
+userRoute.get("/cart", userController.loadCart);
+userRoute.get("/addToCart", userController.addtoCart);
 
 userRoute.get("/delete-cart", userController.deleteCart);
 userRoute.post("/update-cart", userController.updateCart);

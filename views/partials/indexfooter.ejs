@@ -120,6 +120,7 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- Main JS File -->
 
+
 <script src="assets/js/main.js"></script>
 <script src="assets/js/demos/demo-6.js"></script>
 <script>
@@ -128,12 +129,12 @@
 <script>
   function addToCart(productId) {
     $.ajax({
-      url: '/cart?id=' + productId,
-      method: 'POST',
+      url: '/addToCart?id=' + productId,
+      method: 'GET',
       success: function(response) {
         if (response.status) {
           Swal.fire({
-            position: 'top-end',
+            position: 'centre',
             icon: 'success',
             title: 'Product is added to the cart',
             showConfirmButton: false,
@@ -144,15 +145,12 @@
           $('#cart-count').html(count);
         } else {
           Swal.fire({
-            position: 'top-end',
+            position: 'centre',
             icon: 'error',
             title: 'Please login',
             showConfirmButton: false,
             timer: 1500,
           });
-          let count = $('#cart-count').html();
-          count = parseInt(count) + 1;
-          $('#cart-count').html(count);
         }
       },
     });
@@ -160,12 +158,12 @@
 
   function addToWish(productId) {
     $.ajax({
-      url: '/wishlist?id=' + productId,
-      method: 'POST',
+      url: '/addToWishlist?id=' + productId,
+      method: 'GET',
       success: function(response) {
         if (response.status) {
           Swal.fire({
-            position: 'top-end',
+            position: 'centre',
             icon: 'success',
             title: 'Product is added to the wishlist',
             showConfirmButton: false,
@@ -176,15 +174,12 @@
           $('#wish-count').html(count);
         } else {
           Swal.fire({
-            position: 'top-end',
+            position: 'centre',
             icon: 'error',
             title: 'Please login',
             showConfirmButton: false,
             timer: 1500,
           });
-          let count = $('#wish-count').html();
-          count = parseInt(count) + 1;
-          $('#wish-count').html(count);
         }
       },
     });
