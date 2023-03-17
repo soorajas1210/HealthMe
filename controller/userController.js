@@ -704,7 +704,10 @@ const loadCart = async (req, res) => {
     } else {
       res.render("cart", {
         isLoggedin,
-        cat: categoryData, coupon : null ,totalprice:null, discount:null
+        cat: categoryData,
+        coupon: null,
+        totalprice: null,
+        discount: null,
       });
     }
   } catch (error) {
@@ -785,9 +788,6 @@ const addCoupon = async (req, res) => {
       console.log(offerData);
 
       if (offerData) {
-        console.log(offerData.usedBy);
-        console.log(userSession.user_id);
-        console.log(offerData.usedBy == userSession.user_id);
         if (!offerData.usedBy.includes(userSession.user_id)) {
           userSession.offer.name = offerData.name;
           userSession.offer.type = offerData.type;
@@ -801,8 +801,7 @@ const addCoupon = async (req, res) => {
             (userData.totalprice * userSession.offer.discount) / 100;
           userSession.couponTotal = updatedTotal;
           userSession.discount = discount;
-          console.log(userSession.couponTotal);
-          console.log(userSession.discount);
+
           userSession.coupon = userSession.offer.name;
           res.redirect("/cart");
         } else {
@@ -853,23 +852,14 @@ const placeOrder = async (req, res) => {
     if (req.body.payment == "cod") {
       res.redirect("order-placed");
     } else if (req.body.payment == "paypal") {
-      res.redirect("/paypal");
+      const usTotal = orderData.totalprice /83.2;
+      res.render("paypal", { total: usTotal.toFixed(2) });
     }
   } catch (error) {
     console.log(error.message);
   }
 };
 
-const paypal = async (req, res) => {
-  try {
-    const userSession = req.session;
-    const orderData = await Order.findOne({ userId: userSession.user_id });
-
-    res.render("paypal", { total: orderData.totalprice });
-  } catch (error) {
-    console.log(error.message);
-  }
-};
 
 const orderPlaced = async (req, res) => {
   try {
@@ -1133,7 +1123,6 @@ module.exports = {
   updateCart,
   checkOut,
   placeOrder,
-  paypal,
   orderPlaced,
   otpVerify,
   orderDetails,

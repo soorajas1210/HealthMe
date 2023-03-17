@@ -39,7 +39,6 @@ userRoute.get("/checkout", userController.checkOut);
 userRoute.post('/add-coupon',userController.addCoupon)
 
 userRoute.post("/payment", userController.placeOrder);
-userRoute.get("/paypal", userController.paypal);
 
 userRoute.get("/order-placed", userController.orderPlaced);
 userRoute.get("/order-details", userController.orderDetails);

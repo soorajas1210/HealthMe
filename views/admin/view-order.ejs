@@ -11,6 +11,9 @@
 <!-- ============================================================== -->
 <!-- ============================================================== -->
 <!-- Page wrapper  -->
+<link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/buttons/2.3.2/css/buttons.dataTables.min.css"/>
 <!-- ============================================================== -->
 <div class="page-wrapper">
   <!-- ============================================================== -->
@@ -49,7 +52,7 @@
           <% if(id=='CONFIRMED' ){ %>
 
           <div class="table-responsive">
-            <table class="table table-hover table-striped " style="table-layout: fixed;">
+            <table id="pdfTable" class="table table-hover table-striped " style="table-layout: fixed;">
               <thead>
                 <tr>
                   <th scope="col">SI NO</th>
@@ -105,7 +108,7 @@
           <% }else if(id=='DELIVERED' ){ %>
 
           <div class="table-responsive">
-            <table class="table table-hover " style="table-layout: fixed;">
+            <table id="pdfTable" class="table table-hover " style="table-layout: fixed;">
               <thead>
                 <tr>
                   <th scope="col">SI NO</th>
@@ -160,7 +163,7 @@
           <% }else{ %>
 
           <div class="table-responsive">
-            <table class="table table-hover table-striped " style="table-layout: fixed;">
+            <table id="pdfTable" class="table table-hover table-striped " style="table-layout: fixed;">
               <thead>
                 <tr>
                   <th scope="col">SI NO</th>

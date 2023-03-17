@@ -59,8 +59,35 @@
                     <div class="cart-product-quantity">
                       <form action="/update-cart?id=<%= cart[i-1]._id%>" method="post">
 
-                        <input type="number" class="form-control " name="qty" value="<%= cart[i-1].quantity %>" min="1" max="10" step="1" data-decimals="0" required>
-                        <button class="btn-block btn-outline-primary-2" type="submit"><i class="icon-refresh"></i></button>
+                        <!-- <input type="number" class="form-control " name="qty" value="<%= cart[i-1].quantity %>" min="1" max="10" step="1" data-decimals="0" required>
+                        <button class="btn-block btn-outline-primary-2" type="submit"><i class="icon-refresh"></i></button> -->
+ <button
+                          data-decrease
+                          type="submit"
+                          class="button-plus border-0 icon-shape icon-sm"
+                          data-field="quantity"
+                        >
+                          -
+                        </button>
+                        <input
+                          data-value
+                          type="text"
+                          min="1"
+                          step="1"
+                          max="10"
+                          value="<%=cart[i-1].quantity%>"
+                          name="qty"
+                          class="quantity-field border-0 text-center w-25"
+                        />
+                        <button
+                          data-increase
+                          type="submit"
+                          class="button-minus border-0 icon-shape icon-sm mx-1"
+                          data-field="quantity"
+                        >
+                          +
+                        </button>
+
                       </form>
                     </div><!-- End .cart-product-quantity -->
 
